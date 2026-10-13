@@ -1,0 +1,53 @@
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 759.98px) {
+  .mobile-bar {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.4rem;
+    border-radius: 999px;
+    background: rgb(10 23 48 / 0.9);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.12),
+      0 18px 40px -12px rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transform: translateY(calc(100% + 1.5rem));
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .mobile-bar.is-visible {
+    transform: none;
+  }
+}
+
+.mobile-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.mobile-bar__btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.mobile-bar__btn--call {
+  background: var(--gold);
+  color: var(--night-900);
+}

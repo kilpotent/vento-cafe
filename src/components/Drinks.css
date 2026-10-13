@@ -1,0 +1,152 @@
+.drinks {
+  overflow: hidden;
+  background:
+    radial-gradient(50% 40% at 50% 0%, rgb(32 140 204 / 0.16), transparent 70%),
+    url('../assets/patterns/diamonds-gold.svg') center / 64px,
+    var(--night-900);
+}
+
+/* A dawn-to-midnight line: amber sunrise, turquoise day, night blue. */
+.dayline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 54rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold-300);
+  font-variant-numeric: tabular-nums;
+}
+
+.dayline__end {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.dayline__end svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--gold);
+}
+
+.dayline__track {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--amber), var(--gold) 25%, var(--lagoon) 55%, #3d5a96 85%, #6f7fb8);
+}
+
+.dayline__track::before,
+.dayline__track::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.dayline__track::before {
+  left: 33%;
+  background: var(--gold);
+}
+
+.dayline__track::after {
+  left: 66%;
+  background: var(--lagoon);
+}
+
+.moments {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+}
+
+.moment:nth-child(2) {
+  margin-top: clamp(2rem, 5vw, 4.5rem);
+}
+
+.moment__arch {
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-lg);
+}
+
+.moment__arch img {
+  transition: transform 1.2s var(--ease-out);
+}
+
+.moment:hover .moment__arch img {
+  transform: scale(1.04);
+}
+
+.moment__body {
+  padding-top: 1.6rem;
+}
+
+.moment__time {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.moment__time svg {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.moment__title {
+  margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 1.1rem + 0.9vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--cream-50);
+  text-wrap: balance;
+}
+
+.moment__text {
+  margin: 0.8rem 0 1.2rem;
+  color: rgb(255 255 255 / 0.72);
+  text-wrap: pretty;
+}
+
+@media (max-width: 759.98px) {
+  .moments {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .moment {
+    display: grid;
+    grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  .moment:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .moment__body {
+    padding-top: 0.25rem;
+  }
+
+  .moment__text {
+    font-size: 0.95rem;
+  }
+
+  .dayline {
+    font-size: 0.78rem;
+  }
+}

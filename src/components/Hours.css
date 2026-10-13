@@ -1,0 +1,359 @@
+.hours {
+  overflow: hidden;
+  background:
+    radial-gradient(45% 45% at 15% 30%, rgb(39 163 207 / 0.13), transparent 70%),
+    radial-gradient(40% 40% at 95% 90%, rgb(243 184 96 / 0.1), transparent 70%),
+    var(--night-900);
+}
+
+.hours__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-bottom: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.hours__intro {
+  max-width: 40rem;
+}
+
+.hours__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+/* ---------- Dial ---------- */
+
+.hours__dial {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+}
+
+.dial {
+  width: min(100%, 360px);
+  height: auto;
+  overflow: visible;
+}
+
+.dial__track {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.07);
+  stroke-width: 16;
+}
+
+.dial__track--inner {
+  stroke-width: 9;
+}
+
+.dial__tick {
+  stroke: rgb(255 255 255 / 0.25);
+  stroke-width: 1.5;
+}
+
+.dial__tick--major {
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+
+.dial__hour {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  fill: rgb(255 255 255 / 0.55);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dial__arc {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.dial__arc--cafe {
+  stroke: var(--lagoon);
+  stroke-width: 16;
+  filter: drop-shadow(0 0 10px rgb(39 163 207 / 0.45));
+}
+
+.dial__arc--delivery {
+  stroke: var(--gold);
+  stroke-width: 9;
+}
+
+.dial__hand line {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.dial__hand circle {
+  fill: #fff;
+  stroke: var(--night-900);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.7));
+}
+
+.dial__day,
+.dial__time,
+.dial__caption {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dial__day {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  fill: var(--gold-300);
+}
+
+.dial__time {
+  font-family: var(--font-display);
+  font-size: 50px;
+  fill: var(--cream-50);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.dial__caption {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  fill: rgb(255 255 255 / 0.55);
+}
+
+.hours__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.hours__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hours__legend li::before {
+  content: '';
+  width: 1.4rem;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.hours__legend-cafe::before {
+  background: var(--lagoon);
+}
+
+.hours__legend-delivery::before {
+  background: var(--gold);
+}
+
+.hours__legend .hours__legend-now::before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgb(255 255 255 / 0.7);
+}
+
+/* ---------- Table ---------- */
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours-table th,
+.hours-table td {
+  padding: 0.82rem 0.7rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.hours-table thead th {
+  padding-top: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  border-bottom-color: rgb(200 156 104 / 0.35);
+}
+
+.hours-table tbody th {
+  font-weight: 600;
+  color: #fff;
+}
+
+.hours-table td {
+  white-space: nowrap;
+}
+
+.hours-table tr.is-today > * {
+  background: rgb(39 163 207 / 0.14);
+  color: #fff;
+}
+
+.hours-table tr.is-today > th {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.hours-table__today {
+  display: inline-block;
+  margin-left: 0.55rem;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--night-900);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  vertical-align: 0.1em;
+}
+
+.hours-table__muted {
+  color: rgb(255 255 255 / 0.45);
+}
+
+.hours__note {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: rgb(255 255 255 / 0.5);
+}
+
+/* ---------- Delivery card ---------- */
+
+.delivery-card {
+  --focus: var(--night-900);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.75rem, 3vw, 2.4rem);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, var(--lagoon), var(--lagoon-600));
+  color: var(--night-900);
+  box-shadow: var(--shadow-lg);
+}
+
+.delivery-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 150px;
+  background: url('../assets/patterns/diamonds-light.svg') center top / 56px;
+  mask-image: linear-gradient(#000, transparent);
+  -webkit-mask-image: linear-gradient(#000, transparent);
+  pointer-events: none;
+}
+
+.delivery-card > * {
+  position: relative;
+}
+
+.delivery-card__icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0.55rem;
+  border-radius: 50%;
+  background: var(--night-900);
+  color: var(--gold);
+}
+
+.delivery-card__eyebrow {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.delivery-card__title {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.25rem + 1vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.delivery-card__slots {
+  margin-top: 1.25rem;
+}
+
+.delivery-card__slots li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.7rem 0;
+  border-block: 1px solid rgb(10 23 48 / 0.22);
+  font-weight: 600;
+}
+
+.delivery-card__slots strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.delivery-card__text {
+  margin-top: 1rem;
+  font-size: 0.97rem;
+}
+
+.delivery-card__status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.delivery-card__status .dot {
+  box-shadow: 0 0 0 2px rgb(10 23 48 / 0.35);
+}
+
+.delivery-card__phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.35rem;
+}
+
+.delivery-card__note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1099.98px) {
+  .hours__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .delivery-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 719.98px) {
+  .hours__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-table th,
+  .hours-table td {
+    padding-inline: 0.5rem;
+  }
+}

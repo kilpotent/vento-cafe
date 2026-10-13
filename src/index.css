@@ -1,0 +1,466 @@
+/* ==========================================================================
+   Vento Café — design tokens & base styles
+   Palette sampled from the logo (blue #208ccc, gold #c89c68) and the photos
+   (night-blue sky, turquoise bar, warm Edison bulbs).
+   ========================================================================== */
+
+:root {
+  --night-950: #050d1c;
+  --night-900: #0a1730;
+  --night-800: #0f2140;
+  --night-700: #1a3157;
+  --blue: #208ccc;
+  --blue-700: #135f91;
+  --blue-300: #7cc4ea;
+  --lagoon: #27a3cf;
+  --lagoon-600: #1d8db6;
+  --gold: #c89c68;
+  --gold-300: #ddc29d;
+  --gold-700: #8a6235;
+  --amber: #f3b860;
+  --cream-50: #fbf8f2;
+  --cream-100: #f4eee3;
+  --cream-200: #e8decb;
+  --ink: #14151c;
+  --ink-soft: #4a4954;
+  --open: #5ad39a;
+  --closed: #f08a7e;
+
+  --font-display: 'Noto Serif Display Variable', 'Noto Serif Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --container: 1240px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-h: 72px;
+  --section-y: clamp(4.75rem, 10vw, 8.5rem);
+  --radius: 18px;
+  --radius-lg: 28px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-lg: 0 40px 80px -32px rgb(5 13 28 / 0.6);
+  --focus: var(--gold);
+
+  color-scheme: light;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--header-h);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--night-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Safety net: nothing may make the page scroll sideways on a phone. `clip` (unlike `hidden`)
+     doesn't create a scroll container, so sticky positioning and scroll-spy keep working. */
+  overflow-x: clip;
+}
+
+img,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+dl,
+dd,
+blockquote {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--night-900);
+}
+
+/* ---------- Layout & utilities ---------- */
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--night-900);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--cream {
+  --focus: var(--blue-700);
+  background: var(--cream-50);
+  color: var(--ink);
+}
+
+.section--night {
+  background: var(--night-900);
+  color: rgb(255 255 255 / 0.78);
+}
+
+/* ---------- Typography ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9em;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
+  color: var(--gold-700);
+}
+
+.eyebrow::before {
+  content: '';
+  flex: none;
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.section--night .eyebrow,
+.eyebrow--light {
+  color: var(--gold);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.35rem + 3.4vw, 4.1rem);
+  line-height: 1.07;
+  letter-spacing: -0.018em;
+  color: var(--night-900);
+  text-wrap: balance;
+}
+
+.section--night .display {
+  color: var(--cream-50);
+}
+
+.section-head {
+  max-width: 46rem;
+  margin-bottom: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head--center .eyebrow::after {
+  content: '';
+  flex: none;
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.section-head__intro {
+  margin-top: 1.4rem;
+  max-width: 38rem;
+  font-size: 1.125rem;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.section-head--center .section-head__intro {
+  margin-inline: auto;
+}
+
+.section--night .section-head__intro {
+  color: rgb(255 255 255 / 0.7);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0.85em 1.45em;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.35s var(--ease-out),
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--gold {
+  background: var(--gold);
+  color: var(--night-900);
+  box-shadow: 0 14px 30px -14px rgb(200 156 104 / 0.65);
+}
+
+.btn--gold:hover {
+  background: var(--gold-300);
+}
+
+.btn--ghost {
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.38);
+}
+
+.btn--ghost:hover {
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.btn--night {
+  background: var(--night-900);
+  color: var(--cream-50);
+}
+
+.btn--night:hover {
+  background: var(--night-700);
+}
+
+.btn--outline {
+  color: var(--night-900);
+  box-shadow: inset 0 0 0 1.5px var(--night-900);
+}
+
+.btn--outline:hover {
+  background: var(--night-900);
+  color: var(--cream-50);
+}
+
+/* On narrow phones a long label (Greek runs long) wraps instead of pushing the page sideways. */
+@media (max-width: 480px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* ---------- Arches (the shape of the logo's fan emblem) ---------- */
+
+.arch {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px 999px 0 0;
+  background: var(--night-800);
+  isolation: isolate;
+}
+
+.arch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.arch-frame {
+  position: relative;
+}
+
+.arch-frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--gold);
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+}
+
+/* Photos get a blurred preview of themselves as a background while they load. */
+.photo {
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---------- Tags ---------- */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags li {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: inset 0 0 0 1px rgb(200 156 104 / 0.45);
+  color: var(--gold-300);
+}
+
+/* ---------- Status dots ---------- */
+
+.dot {
+  position: relative;
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--closed);
+}
+
+.is-open > .dot {
+  background: var(--open);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-open > .dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: dot-pulse 2.4s var(--ease-out) infinite;
+  }
+}
+
+@keyframes dot-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ---------- Scroll reveal (see useRevealOnScroll) ---------- */
+
+.reveal-ready [data-reveal] {
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0) * 90ms);
+}
+
+.reveal-ready [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
