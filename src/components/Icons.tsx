@@ -136,11 +136,11 @@ export const FacebookIcon = (props: IconProps) => (
   </Icon>
 )
 
-/** Small fan, after the logo's emblem — used as an ornament. */
-export const FanIcon = (props: IconProps) => (
-  <Icon viewBox="0 0 24 16" {...props}>
-    <path d="M2 14a10 10 0 0 1 20 0" />
-    <path d="M12 14V5.5M12 14 7 7.4M12 14l5-6.6M12 14 4.4 10.8M12 14l7.6-3.2" />
+export const InstagramIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <path d="M17.5 6.5h.01" />
   </Icon>
 )
 

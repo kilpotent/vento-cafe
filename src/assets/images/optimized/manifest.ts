@@ -38,6 +38,12 @@ import drinks1200 from './drinks-1200.webp'
 import delivery480 from './delivery-480.webp'
 import delivery960 from './delivery-960.webp'
 import delivery1200 from './delivery-1200.webp'
+import icedCoffee480 from './iced-coffee-480.webp'
+import icedCoffee960 from './iced-coffee-960.webp'
+import icedCoffee1200 from './iced-coffee-1200.webp'
+import whiteWine480 from './white-wine-480.webp'
+import whiteWine960 from './white-wine-960.webp'
+import whiteWine1200 from './white-wine-1200.webp'
 import logoWhite600 from './logo-white-600.webp'
 import logoWhite1200 from './logo-white-1200.webp'
 import logoWhiteCompact from './logo-white-compact.webp'
@@ -127,6 +133,18 @@ export const photos = {
     lqip: 'data:image/webp;base64,UklGRiYBAABXRUJQVlA4IBoBAAAQBgCdASoYACAAPuVio02pJaMiMAwBIByJQBe+HoagGk7Z/C0WcfKOL20VUISuLl/8V8SyXNxMagAA/kAPmT5P5r5aBnrZ99+pQb3N4Rbmb/QIZGgcoSe0pA3liGUVQJnoOtrK+1UpxxBZPJPIv1kg9/X7N5GsLXpHE0Ajje3CRJpzheSoL3d1vPa1KbEoYKOJ4s7wH+1sUx27rRvnwWzjSVj/KnBhdHi46R8j+scGs6qRryuCCxCQjI6n4buK3HDbeQM8TGVpKVaS+UxcP37os4aJ5w4ziiAKMmi8Z5WMqR+5CpgdujyxNHE19EK+s4L/eYJ3SM8pwwkZ11/DQgAlqCfkJ+i5vpaZT6+HugLpJs/qlFpNbDIAAAA=',
     sources: [[delivery480, 480], [delivery960, 960], [delivery1200, 1200]],
   },
+  'iced-coffee': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRmgBAABXRUJQVlA4IFwBAACwBgCdASoYACAAPu1gp02ppSOiMAgBMB2JbACdMuu6JmKPADGWVharfeSl9eTNX/Y/4fKUZOGv1A0a0uhg2AD+2uI4wDKko1j7Z3ASNegwZPTC4cazGW27H7Ffi+dy410zXcYWsNgruqOxt23GtZ3oA2QAiWyOnCtQwcwKHHjNoFzTzsJMimlainf6/e11K47QL5WnVzqecffAka2kVWk3ZP0M1G/EP/AGdgqL8VTjXIqpMIwHzDkhRmcLg5j+7P3wcHHikJYQ4Qd3jc0Novuk8JmYX1QbB5R82dtyzSyoPvaRAOjemjlKsc7AWKK2kWFIKf9nBsVV6kz2MgB5cLdAkNi2iI+gOhOtkgtrdZks6eV/VsskSIdGjWOxbWfdSmS1LcMW7V8ErJCXjXo31EPaEhsrP9qtH0qoK76eMs2nLVMBjydjwrJhPIUkeA1YXV6VC8wWIqA19IAAAAA=',
+    sources: [[icedCoffee480, 480], [icedCoffee960, 960], [icedCoffee1200, 1200]],
+  },
+  'white-wine': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRvgAAABXRUJQVlA4IOwAAAAQBQCdASoYACAAPulgo02pJaMiMAwBIB0JQBXHqYQawtwfsBku/Nr2guJlSQ0Y9IYAAP7dDnCKUrQc46VPSuHfxYsDk16Z/8kSp3OoY44RwPXE6k/2NcYtlpJ0mjmLKgOg/73HtRut4tZ3IThWFJ9zb62WxVN8W8PaReMMjcrzjCpzCoSSm8Qh9KFPq11zBCz3qs9qOnnMFF78o9AAE3wvQeva3ySr4oTZBYwHmgcg6IUpuBJBbUL97SSJriLAsy52ZPATr0RHKZqj1XPsaUWKQShNiYsus7388ms26lI3KZLsHClIqlMpXQAAAA==',
+    sources: [[whiteWine480, 480], [whiteWine960, 960], [whiteWine1200, 1200]],
+  },
 } satisfies Record<string, { width: number; height: number; lqip: string; sources: readonly Source[] }>
 
 export type PhotoName = keyof typeof photos
@@ -134,16 +152,16 @@ export type PhotoName = keyof typeof photos
 export const logos = {
   white: {
     width: 3087,
-    height: 1615,
+    height: 1627,
     sources: [[logoWhite600, 600], [logoWhite1200, 1200]],
-    compact: { src: logoWhiteCompact, width: 3087, height: 1422 },
+    compact: { src: logoWhiteCompact, width: 3087, height: 1432 },
   },
   black: {
     width: 3086,
-    height: 1615,
+    height: 1627,
     sources: [[logoBlack600, 600], [logoBlack1200, 1200]],
-    compact: { src: logoBlackCompact, width: 3086, height: 1422 },
+    compact: { src: logoBlackCompact, width: 3086, height: 1432 },
   },
 } as const
 
-export const emblem = { src: emblemSrc, width: 879, height: 691 } as const
+export const emblem = { src: emblemSrc, width: 879, height: 701 } as const

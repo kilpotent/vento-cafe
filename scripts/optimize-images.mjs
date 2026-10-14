@@ -11,28 +11,30 @@ import sharp from 'sharp'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const imagesDir = path.join(root, 'src/assets/images')
+const photosDir = path.join(imagesDir, 'photos')
 const outDir = path.join(imagesDir, 'optimized')
 const publicDir = path.join(root, 'public')
 
 const NIGHT = '#0a1730'
 
-// name -> original file (relative to src/assets/images), optionally with a crop region in source pixels
-const BAR = 'set-foundation/486064697_1336285261133698_3562019471008150945_n.jpg'
+// name -> original file in src/assets/images/photos (named after the photo), optionally with a crop region in source pixels
 const PHOTOS = {
-  'bar-counter': BAR,
+  'bar-counter': 'bar-counter.jpg',
   // 3:4 detail of the bar: Edison bulbs, pastries and the "IN COFFEE" lettering (keeps the TV out of frame)
-  'bar-morning': { file: BAR, extract: { left: 0, top: 200, width: 912, height: 1216 } },
-  'olive-terrace': 'set-foundation/IMG_7533.JPG',
-  'night-exterior': 'set-foundation/IMG_7538.JPG',
-  'dusk-corner': 'set-foundation/IMG_7521.JPG',
-  'evening-drinks': 'set-foundation/475220574_2356693338022036_6731259876509192094_n.jpg',
-  'back-bar': 'set-foundation/IMG_7528.JPG',
-  'pergola-night': 'set-foundation/481763992_1322671832495041_4235636444850990146_n.jpg',
-  'coffee-bar': 'set-foundation/coffee-bar-01.jpeg',
-  'crepes': 'set-foundation/crepes-01.jpeg',
-  'matchday': 'set-foundation/matchday-01.jpeg',
-  'drinks': 'set-foundation/drinks-01.jpeg',
-  'delivery': 'set-foundation/delivery-01.jpeg',
+  'bar-morning': { file: 'bar-counter.jpg', extract: { left: 0, top: 200, width: 912, height: 1216 } },
+  'olive-terrace': 'olive-terrace.jpg',
+  'night-exterior': 'night-exterior.jpg',
+  'dusk-corner': 'dusk-corner.jpg',
+  'evening-drinks': 'evening-drinks.jpg',
+  'back-bar': 'back-bar.jpg',
+  'pergola-night': 'pergola-night.jpg',
+  'coffee-bar': 'coffee-bar.jpg',
+  'crepes': 'crepes.jpg',
+  'matchday': 'matchday.jpg',
+  'drinks': 'drinks.jpg',
+  'delivery': 'delivery.jpg',
+  'iced-coffee': 'iced-coffee.jpg',
+  'white-wine': 'white-wine.jpg',
 }
 const PHOTO_WIDTHS = [480, 960, 1600]
 
@@ -45,7 +47,7 @@ const camel = (s) => s.replace(/-(\w)/g, (_, c) => c.toUpperCase())
 
 async function photoVariants(name, entry) {
   const { file, extract } = typeof entry === 'string' ? { file: entry } : entry
-  const source = await sharp(path.join(imagesDir, file)).rotate().toBuffer()
+  const source = await sharp(path.join(photosDir, file)).rotate().toBuffer()
   const input = extract ? await sharp(source).extract(extract).toBuffer() : source
   const { width, height } = await sharp(input).metadata()
   const widths = [...new Set(PHOTO_WIDTHS.map((w) => Math.min(w, width)))]

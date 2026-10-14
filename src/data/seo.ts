@@ -25,7 +25,7 @@ export function structuredData() {
     },
     geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng },
     hasMap: MAPS.place,
-    sameAs: [SITE.facebook],
+    sameAs: [SITE.facebook, SITE.instagram],
     servesCuisine: ['Coffee', 'Cocktails'],
     openingHoursSpecification: groupDays(HOURS.cafe).flatMap(({ days, interval }) =>
       interval
@@ -68,7 +68,7 @@ export function noscriptHtml(): string {
     `<p>Λαμία, από το ${SITE.foundedYear} · Lamia, since ${SITE.foundedYear}</p>`,
     ...rows.map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`),
     `<p><strong>Τηλέφωνα / Phone:</strong> ${phones}</p>`,
-    `<p><a href="${escapeHtml(MAPS.directions)}">Google Maps</a> · <a href="${escapeHtml(SITE.facebook)}">Facebook</a></p>`,
+    `<p><a href="${escapeHtml(MAPS.directions)}">Google Maps</a> · <a href="${escapeHtml(SITE.facebook)}">Facebook</a> · <a href="${escapeHtml(SITE.instagram)}">Instagram</a></p>`,
     '</div>',
   ].join('')
 }

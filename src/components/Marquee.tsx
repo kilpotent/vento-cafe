@@ -1,5 +1,5 @@
+import { emblem } from '../assets/images/optimized/manifest.ts'
 import { useLanguage } from '../i18n/context.ts'
-import { FanIcon } from './Icons.tsx'
 import './Marquee.css'
 
 /** Turquoise band after the bar's geometric pattern. Decorative: the same words appear elsewhere. */
@@ -13,7 +13,13 @@ export default function Marquee() {
             {t.marquee.map((item) => (
               <li key={item}>
                 {item}
-                <FanIcon className="marquee__fan" />
+                <img
+                  className="marquee__fan"
+                  src={emblem.src}
+                  width={emblem.width}
+                  height={emblem.height}
+                  alt=""
+                />
               </li>
             ))}
           </ul>

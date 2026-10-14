@@ -16,7 +16,7 @@ Built with Vite, React 19 and TypeScript, styled with plain CSS.
 
 ## Changing content
 
-- **Hours, delivery, phones, address, map, Facebook:** `src/data/site.ts`. This is the single source of truth: the page,
+- **Hours, delivery, phones, address, map, Facebook, Instagram:** `src/data/site.ts`. This is the single source of truth: the page,
   the live “open now” badge, the 24-hour dial, the structured data for Google and the no-JavaScript fallback all read from
   it. Times are minutes after midnight via `at(hours, minutes)`; `at(24)` means midnight, and values past 24 hours
   (e.g. `at(26)` = 02:00) are supported for late nights.
@@ -26,8 +26,11 @@ Built with Vite, React 19 and TypeScript, styled with plain CSS.
   too if the closing time changes.
 - **Menu and prices:** `src/data/menu.ts`, transcribed from the printed menu in `src/assets/images/menu/`. Each item
   has a Greek and an English name (`tx('Άλφα', 'Alfa')`; one argument when both are the same) and a price in euros.
-- **Photos:** originals live in `src/assets/images/set-foundation/`. Map a file to a name in `PHOTOS` inside
-  `scripts/optimize-images.mjs`, run `npm run images`, then use it with `<Photo name="…" />`.
+- **Photos:** originals live in `src/assets/images/photos/`, each named after the photo it becomes
+  (`olive-terrace.jpg` → `<Photo name="olive-terrace" />`). To add one: drop the file there, add it to `PHOTOS` in
+  `scripts/optimize-images.mjs` and run `npm run images`. Every photo except the hero’s `bar-morning` crop also needs a
+  caption and alt text in both languages under `gallery.photos` in `translations.ts`; list it in `PHOTOS` in
+  `src/components/Gallery.tsx` to show it in the gallery (the grid in `Gallery.css` is laid out for that exact count).
 - **Logo:** `src/assets/images/logos/logo-white.png` (for dark backgrounds) and `logo-black.png` (for light backgrounds).
   Run `npm run images` after replacing them; the header’s compact logo and the favicons are cut from these.
 

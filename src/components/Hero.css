@@ -3,11 +3,16 @@
   display: flex;
   align-items: center;
   min-height: 100svh;
-  padding: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) 0 clamp(5rem, 9vw, 6.5rem);
+  padding: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) 0
+    clamp(5rem, 9vw, 6.5rem);
   overflow: hidden;
   color: #fff;
   background:
-    radial-gradient(60% 55% at 80% 105%, rgb(243 184 96 / 0.22), transparent 70%),
+    radial-gradient(
+      60% 55% at 80% 105%,
+      rgb(243 184 96 / 0.22),
+      transparent 70%
+    ),
     radial-gradient(55% 50% at 0% 0%, rgb(32 140 204 / 0.24), transparent 65%),
     linear-gradient(180deg, var(--night-950), var(--night-900) 65%);
 }
@@ -79,7 +84,11 @@
   opacity: 0.4;
   pointer-events: none;
   mask-image: radial-gradient(50% 100% at 50% 100%, #000 25%, transparent 80%);
-  -webkit-mask-image: radial-gradient(50% 100% at 50% 100%, #000 25%, transparent 80%);
+  -webkit-mask-image: radial-gradient(
+    50% 100% at 50% 100%,
+    #000 25%,
+    transparent 80%
+  );
 }
 
 .hero__arch {
@@ -191,7 +200,7 @@
 }
 
 .hero__scroll-line::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--gold);
@@ -232,6 +241,36 @@
 
   .hero__scroll {
     display: none;
+  }
+
+  /* One column: centre the text above the centred photos. */
+  .hero__content {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* Matching rule after the eyebrow, as in .section-head--center */
+  .hero__content .eyebrow::after {
+    content: "";
+    flex: none;
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .hero__logo img {
+    height: 200px;
+    width: auto;
+    margin-inline: auto;
+    padding-bottom: 1rem;
+  }
+
+  .hero__sub {
+    margin-inline: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
   }
 }
 

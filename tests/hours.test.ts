@@ -6,7 +6,6 @@ import {
   cafeTime,
   formatDays,
   formatInterval,
-  formatShortInterval,
   formatTime,
   groupDays,
   statusAt,
@@ -65,27 +64,27 @@ describe('café status', () => {
 })
 
 describe('delivery status', () => {
-  test('open 06:00–09:00 on weekdays', () => {
-    assert.equal(statusAt(HOURS.delivery, { day: MON, minutes: at(5, 59) }).open, false)
-    assert.deepEqual(statusAt(HOURS.delivery, { day: MON, minutes: at(8, 59) }), {
+  test('open 05:00–21:00 Monday to Saturday', () => {
+    assert.equal(statusAt(HOURS.delivery, { day: MON, minutes: at(4, 59) }).open, false)
+    assert.deepEqual(statusAt(HOURS.delivery, { day: MON, minutes: at(20, 59) }), {
       open: true,
-      closesAt: at(9),
+      closesAt: at(21),
       minutesLeft: 1,
     })
-    assert.equal(statusAt(HOURS.delivery, { day: MON, minutes: at(9) }).open, false)
+    assert.equal(statusAt(HOURS.delivery, { day: MON, minutes: at(21) }).open, false)
   })
 
   test('after Saturday’s window, the next delivery is Monday', () => {
-    assert.deepEqual(statusAt(HOURS.delivery, { day: SAT, minutes: at(10) }), {
+    assert.deepEqual(statusAt(HOURS.delivery, { day: SAT, minutes: at(22) }), {
       open: false,
-      next: { daysAhead: 2, day: MON, at: at(6) },
+      next: { daysAhead: 2, day: MON, at: at(5) },
     })
   })
 
   test('no delivery on Sunday: next is tomorrow', () => {
     assert.deepEqual(statusAt(HOURS.delivery, { day: SUN, minutes: at(7) }), {
       open: false,
-      next: { daysAhead: 1, day: MON, at: at(6) },
+      next: { daysAhead: 1, day: MON, at: at(5) },
     })
   })
 })
@@ -112,8 +111,6 @@ describe('formatting', () => {
     assert.equal(formatTime(at(24)), '00:00')
     assert.equal(formatTime(at(26)), '02:00')
     assert.equal(formatInterval({ open: at(5), close: at(24) }), '05:00 – 00:00')
-    assert.equal(formatShortInterval({ open: at(6), close: at(9) }), '06–09')
-    assert.equal(formatShortInterval({ open: at(6, 30), close: at(9) }), '06:30 – 09:00')
   })
 
   test('grouping days with identical hours', () => {

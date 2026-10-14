@@ -3,7 +3,7 @@ import { HOURS, SITE } from '../data/site.ts'
 import { useYear } from '../hooks/useNow.ts'
 import { useLanguage } from '../i18n/context.ts'
 import { formatDays, formatInterval, groupDays } from '../lib/hours.ts'
-import { ArrowUpIcon, FacebookIcon } from './Icons.tsx'
+import { ArrowUpIcon, FacebookIcon, InstagramIcon } from './Icons.tsx'
 import LanguageSwitch from './LanguageSwitch.tsx'
 import Logo from './Logo.tsx'
 import StatusPill from './StatusPill.tsx'
@@ -73,11 +73,18 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <a className="site-footer__social" href={SITE.facebook} target="_blank" rel="noopener noreferrer">
-            <FacebookIcon />
-            Facebook
-            <span className="sr-only">{t.a11y.newTab}</span>
-          </a>
+          <div className="site-footer__socials">
+            <a className="site-footer__social" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon />
+              Instagram
+              <span className="sr-only">{t.a11y.newTab}</span>
+            </a>
+            <a className="site-footer__social" href={SITE.facebook} target="_blank" rel="noopener noreferrer">
+              <FacebookIcon />
+              Facebook
+              <span className="sr-only">{t.a11y.newTab}</span>
+            </a>
+          </div>
         </div>
       </div>
 

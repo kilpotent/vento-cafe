@@ -1,7 +1,7 @@
 import { HOURS, MAPS, SITE } from '../data/site.ts'
 import { useLanguage } from '../i18n/context.ts'
 import { formatDays, formatInterval, groupDays } from '../lib/hours.ts'
-import { ClockIcon, ExternalIcon, FacebookIcon, NavigationIcon, PhoneIcon, PinIcon } from './Icons.tsx'
+import { ClockIcon, ExternalIcon, FacebookIcon, InstagramIcon, NavigationIcon, PhoneIcon, PinIcon } from './Icons.tsx'
 import Logo from './Logo.tsx'
 import './Contact.css'
 
@@ -80,11 +80,18 @@ export default function Contact() {
               <span className="sr-only">{t.a11y.newTab}</span>
             </a>
           </div>
-          <a className="contact__social" href={SITE.facebook} target="_blank" rel="noopener noreferrer">
-            <FacebookIcon />
-            {t.contact.facebook}
-            <span className="sr-only">{t.a11y.newTab}</span>
-          </a>
+          <div className="contact__socials">
+            <a className="contact__social" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon />
+              {t.contact.instagram}
+              <span className="sr-only">{t.a11y.newTab}</span>
+            </a>
+            <a className="contact__social" href={SITE.facebook} target="_blank" rel="noopener noreferrer">
+              <FacebookIcon />
+              {t.contact.facebook}
+              <span className="sr-only">{t.a11y.newTab}</span>
+            </a>
+          </div>
         </div>
 
         <div className="contact__map" data-reveal>

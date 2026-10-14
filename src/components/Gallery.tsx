@@ -11,13 +11,15 @@ const PHOTOS: readonly GalleryPhoto[] = [
   'evening-drinks',
   'back-bar',
   'night-exterior',
-  'dusk-corner',
-  'pergola-night',
+  'iced-coffee',
+  'white-wine',
   'coffee-bar',
   'crepes',
   'matchday',
   'drinks',
   'delivery',
+  'dusk-corner',
+  'pergola-night',
 ]
 
 /** Positions in PHOTOS that get a big 2×2 tile (matches the nth-child rules in Gallery.css). */
@@ -32,6 +34,8 @@ const FOCUS: Partial<Record<GalleryPhoto, string>> = {
   'pergola-night': '55% 62%',
   drinks: '50% 80%',
   delivery: '50% 70%',
+  'iced-coffee': '50% 80%',
+  'white-wine': '50% 90%',
 }
 
 export default function Gallery() {

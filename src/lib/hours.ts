@@ -75,12 +75,6 @@ export function formatTime(minutes: number): string {
 
 export const formatInterval = ({ open, close }: Interval) => `${formatTime(open)} – ${formatTime(close)}`
 
-/** "06–09" when both ends are on the hour, otherwise the full "06:30 – 09:00". */
-export function formatShortInterval(interval: Interval): string {
-  const onTheHour = interval.open % 60 === 0 && interval.close % 60 === 0
-  return onTheHour ? `${formatTime(interval.open).slice(0, 2)}–${formatTime(interval.close).slice(0, 2)}` : formatInterval(interval)
-}
-
 export const isMidnight = (minutes: number) => minutes % DAY_MINUTES === 0
 
 export interface DayGroup {

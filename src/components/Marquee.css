@@ -35,9 +35,6 @@
 .marquee__fan {
   width: 1.4rem;
   height: auto;
-  stroke-width: 1.6;
-  color: var(--night-900);
-  opacity: 0.75;
 }
 
 @media (prefers-reduced-motion: no-preference) {
