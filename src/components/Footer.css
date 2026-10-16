@@ -21,18 +21,14 @@
   gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-.site-footer__logo {
-  width: 210px;
-  margin-bottom: 1.5rem;
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.site-footer__brand p {
-  max-width: 22rem;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: rgb(255 255 255 / 0.8);
+.site-footer__logo {
+  width: 210px;
 }
 
 .site-footer__title {
@@ -125,6 +121,15 @@
   border-top: 1px solid rgb(255 255 255 / 0.1);
   font-size: 0.85rem;
   color: rgb(255 255 255 / 0.5);
+}
+
+.site-footer__legal {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.site-footer__legal a {
+  font-weight: 700;
 }
 
 .site-footer__top {

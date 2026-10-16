@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { HOURS } from "../data/site.ts";
 import { useLanguage } from "../i18n/context.ts";
-import { formatTime, isMidnight, openDays } from "../lib/hours.ts";
+import { formatTime, openDays } from "../lib/hours.ts";
 import { MoonIcon, SunIcon, SunriseIcon } from "./Icons.tsx";
 import Photo from "./Photo.tsx";
 import "./Drinks.css";
@@ -15,14 +15,14 @@ const MOMENTS = [
   },
   {
     key: "afternoon",
-    photo: "olive-terrace",
-    position: "57% 50%",
+    photo: "crepes",
+    position: "50% 50%",
     Icon: SunIcon,
   },
   {
     key: "evening",
-    photo: "evening-drinks",
-    position: "28% 50%",
+    photo: "white-wine",
+    position: "35% 60%",
     Icon: MoonIcon,
   },
 ] as const;
@@ -36,7 +36,7 @@ export default function Drinks() {
   const times: Record<(typeof MOMENTS)[number]["key"], string | null> = {
     morning: t.drinks.from(formatTime(earliest)),
     afternoon: null,
-    evening: t.drinks.until(formatTime(latest), isMidnight(latest)),
+    evening: t.drinks.until(formatTime(latest)),
   };
 
   return (

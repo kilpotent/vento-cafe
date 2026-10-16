@@ -7,7 +7,7 @@ export type Lang = (typeof LANGS)[number];
 export const isLang = (value: unknown): value is Lang =>
   LANGS.includes(value as Lang);
 
-/** Photos shown in the gallery (the hero's "bar-morning" crop is a detail of "bar-counter"). */
+/** Photos the gallery can show; Gallery.tsx picks which ones (the "bar-morning" crop is a detail of "bar-counter"). */
 export type GalleryPhoto = Exclude<PhotoName, "bar-morning">;
 interface PhotoText {
   caption: string;
@@ -30,7 +30,7 @@ const en = {
   meta: {
     title: "Vento Café Lamia — In Coffee We Trust",
     description:
-      "Vento Café in Lamia since 2011: coffee, koulouri, cocktails and sports nights. Open every day from early morning until late evening, with delivery Monday to Saturday.",
+      "Vento Café in Lamia since 2011: coffee, crepes and waffles, club sandwiches, sharing platters and sports nights. Open every day from early morning until late evening, with delivery Monday to Saturday.",
   },
   a11y: {
     skip: "Skip to content",
@@ -45,7 +45,7 @@ const en = {
   },
   nav: {
     story: "Story",
-    drinks: "Coffee & Drinks",
+    drinks: "Coffee & Food",
     menu: "Menu",
     gallery: "Gallery",
     hours: "Hours",
@@ -76,15 +76,15 @@ const en = {
   hero: {
     eyebrow: "LAMIA · SINCE 2011",
     logoAlt: "Vento Café — In Coffee We Trust",
-    lead: "The first coffee of the day. The last drink of the night.",
+    lead: "The first coffee of the day. And something tasty to go with it.",
     sub: "Open every day from early morning until late evening.",
     call: "Call us",
     directions: "Get directions",
     badge: "IN COFFEE WE TRUST · SINCE 2011 · ",
     mainPhotoAlt:
-      "The counter at Vento: Edison bulbs hanging on ropes, pastries and koulouri, and the turquoise bar lettered “In Coffee We”",
+      "The coffee station: an espresso machine, stacks of cups and takeaway cups on the counter, and the Johann Jacobs Professional crest on a teal wall under a single Edison bulb",
     accentPhotoAlt:
-      "A pink long drink in a cut-crystal glass and a dessert in a coupe on a silver tray",
+      "A glass of white wine and a small teal bowl of mixed nuts on a wooden table, with the bar lights blurred behind",
     scroll: "Discover",
   },
   marquee: [
@@ -93,8 +93,9 @@ const en = {
     "Freddo cappuccino",
     "Cappuccino",
     "Koulouri",
-    "Croissants",
-    "Cocktails",
+    "Club sandwiches",
+    "Crepes & Waffles",
+    "Sharing platters",
     "Sports nights",
     "In Coffee We Trust",
   ],
@@ -103,7 +104,7 @@ const en = {
     title: "Coffee first. Everything else after.",
     body: [
       "Since 2011, Vento has been a meeting point for those who appreciate great coffee and good company. Guided by our philosophy, “in coffee we trust”, we’ve become part of everyday life in Lamia, sharing in the little moments and the big memories alike.",
-      "From the first espresso of the early morning to a refreshing freddo with friends and cocktails that set the mood for the evening, every moment at Vento has its own place.",
+      "From the first espresso of the early morning and a refreshing freddo with friends to a club sandwich at lunchtime and a warm crepe in the afternoon, every moment at Vento has its own place.",
       "With a welcoming atmosphere, a spacious terrace to enjoy at any time of day, and the perfect setting to catch all the big sporting moments, Vento is more than just a place to grab a coffee.",
       "It’s where the day begins, friends come together, and moments are made worth coming back for.",
       "Vento. Where it all starts with a great coffee.",
@@ -121,33 +122,32 @@ const en = {
       "Vento at night: the lit terrace and bar on the ground floor of a corner building",
   },
   drinks: {
-    eyebrow: "COFFEE & DRINKS",
-    title: "From the first espresso to the last cocktail.",
+    eyebrow: "COFFEE & FOOD",
+    title: "From the first espresso to the last bite.",
     intro: "Vento changes pace with the day — never its character.",
     from: (time: string) => `From ${time}`,
-    until: (time: string, midnight: boolean) =>
-      midnight ? "Until late evening" : `Until ${time}`,
+    until: (time: string) => `Until ${time}`,
     moments: {
       morning: {
         label: "Morning",
         title: "The morning ritual",
-        text: "Espresso, cappuccino and freddo made just right, with koulouri, croissants and something sweet from the counter. In a hurry? We deliver, too.",
-        tags: ["Espresso", "Freddo", "Cappuccino", "Koulouri"],
-        alt: "Vento’s bar with hanging Edison bulbs, pastries on the counter and shelves of bottles behind",
+        text: "Espresso, cappuccino and freddo made just right, with koulouri, a croissant or a warm toastie and brioche from the counter. In a hurry? We deliver, too.",
+        tags: ["Espresso", "Freddo", "Koulouri", "Toasties & brioche"],
+        alt: "Two iced coffees with straws in Jacobs glasses, one black and one topped with milk foam, on a terrace table under a tree on a sunny day",
       },
       afternoon: {
-        label: "Afternoon",
-        title: "Your afternoon coffee spot",
-        text: "A long coffee with friends under the trees, something cold in the shade and the game on the screens — the kind of afternoon that drifts into evening.",
-        tags: ["Freddo cappuccino", "Soft drinks", "Live sports"],
-        alt: "Vento’s corner terrace at dusk, full of people under trees lit from below",
+        label: "Midday & afternoon",
+        title: "Time for something tasty",
+        text: "Club sandwiches with turkey, ham or chicken nuggets, fresh baguettes and crepes, sweet or savoury, just the way you like them — with a freddo on the side, in the shade of the trees.",
+        tags: ["Club sandwiches", "Baguettes", "Crepes", "Waffles"],
+        alt: "From above: a waffle drizzled with milk and white chocolate and topped with cookie crumbs, beside a folded crepe with chocolate and crushed biscuit",
       },
       evening: {
         label: "Evening",
         title: "When the lights come on",
-        text: "The bar takes over: cocktails, long drinks, a well-stocked back bar and good company until closing.",
-        tags: ["Cocktails", "Long drinks", "Spirits"],
-        alt: "Back-bar shelves lined with spirits in low evening light",
+        text: "A sharing platter in the middle of the table, the game on the big screen and, if you fancy, a cold beer or a glass of wine — with good company until closing.",
+        tags: ["Sharing platters", "Sports nights", "Beer & wine"],
+        alt: "Two glasses of white wine on a dark table, with the bar’s lights and shelves blurred behind",
       },
     },
   },
@@ -155,14 +155,15 @@ const en = {
     eyebrow: "MENU",
     title: "Something for every hour.",
     intro:
-      "Coffee, soft drinks, crepes and waffles, snacks, beer and cocktails. All prices are in euros.",
+      "Coffee, crepes and waffles, club sandwiches, baguettes, toasties and sharing platters — plus soft drinks, beer and wine. All prices are in euros.",
     tabs: "Menu sections",
     free: "free",
   },
   gallery: {
     eyebrow: "GALLERY",
-    title: "A glimpse of Vento",
-    intro: "Inside and out, morning to night. Tap a photo to see it larger.",
+    title: "A taste of Vento",
+    intro:
+      "Coffee, crepes, waffles and club sandwiches, just as we serve them. Tap a photo to see it larger.",
     dialogLabel: "Photo gallery",
     open: (caption: string) => `View larger: ${caption}`,
     close: "Close",
@@ -179,7 +180,7 @@ const en = {
         alt: "People chatting at terrace tables beside a tree wrapped in string lights, with planters of pink and red flowers in front",
       },
       "evening-drinks": {
-        caption: "Cocktails and something sweet to end the day.",
+        caption: "Something cool and something sweet to end the day.",
         alt: "A pink long drink in a cut-crystal glass and a dessert in a coupe on a silver tray",
       },
       "back-bar": {
@@ -225,6 +226,30 @@ const en = {
       "white-wine": {
         caption: "White wine for two.",
         alt: "Two glasses of white wine on a dark table, with the bar’s lights and shelves blurred behind",
+      },
+      "freddo-cups": {
+        caption: "Freddos for the whole crowd.",
+        alt: "Rows of iced coffees topped with milk foam in Vento cups with domed lids, a few with whipped cream and cinnamon, lined up on the counter in front of the espresso machine",
+      },
+      "club-sandwich": {
+        caption: "A proper club sandwich.",
+        alt: "A club sandwich cut into triangles, with crispy chicken, cheese, tomato and lettuce, held with a wooden pick beside a pile of chunky fries on a wooden board",
+      },
+      "banana-crepe": {
+        caption: "Crepe with praline, banana and ice cream.",
+        alt: "A folded crepe drizzled with chocolate praline and crushed biscuit, with banana slices and a scoop of strawberry ice cream",
+      },
+      waffles: {
+        caption: "Waffles with praline and ice cream.",
+        alt: "Two waffles on blue plates, covered in chocolate and a lighter praline with crushed biscuit, topped with scoops of strawberry and vanilla ice cream",
+      },
+      "waffle-box": {
+        caption: "Banana waffle, to go.",
+        alt: "Waffle pieces covered in creamy praline and topped with banana slices in an open white takeaway box, in afternoon sunlight",
+      },
+      "chicken-nuggets": {
+        caption: "Chicken nuggets with fries and pink sauce.",
+        alt: "Crispy chicken nuggets on a bed of chunky fries around a ramekin of pink sauce, with a plate of fries behind",
       },
     } satisfies Record<GalleryPhoto, PhotoText>,
   },
@@ -277,11 +302,11 @@ const en = {
     instagram: "Follow us on Instagram",
   },
   footer: {
-    tagline: "Coffee, koulouri, cocktails — and good company, since 2011.",
     explore: "Explore",
     hours: "Hours",
     visit: "Visit us",
     rights: (year: number) => `© ${year} Vento Café. All rights reserved.`,
+    credit: "Created by",
     top: "Back to top",
   },
 };
@@ -292,7 +317,7 @@ const el: Dictionary = {
   meta: {
     title: "Vento Café Λαμία — In Coffee We Trust",
     description:
-      "Το Vento Café στη Λαμία, από το 2011: καφές, κουλούρι, κοκτέιλ και αθλητικές βραδιές. Ανοιχτά κάθε μέρα από νωρίς το πρωί ως το βράδυ, με delivery Δευτέρα έως Σάββατο.",
+      "Το Vento Café στη Λαμία, από το 2011: καφές, κρέπες και βάφλες, club sandwich, ποικιλίες και αθλητικές βραδιές. Ανοιχτά κάθε μέρα από νωρίς το πρωί ως το βράδυ, με delivery Δευτέρα έως Σάββατο.",
   },
   a11y: {
     skip: "Μετάβαση στο περιεχόμενο",
@@ -307,7 +332,7 @@ const el: Dictionary = {
   },
   nav: {
     story: "Ιστορία",
-    drinks: "Καφές & Ποτό",
+    drinks: "Καφές & Φαγητό",
     menu: "Κατάλογος",
     gallery: "Γκαλερί",
     hours: "Ωράριο",
@@ -336,15 +361,15 @@ const el: Dictionary = {
   hero: {
     eyebrow: "ΛΑΜΙΑ · ΑΠΟ ΤΟ 2011",
     logoAlt: "Vento Café — In Coffee We Trust",
-    lead: "Ο πρώτος καφές της μέρας. Το τελευταίο ποτό της βραδιάς.",
+    lead: "Ο πρώτος καφές της μέρας. Και κάτι νόστιμο δίπλα του.",
     sub: "Ανοιχτά κάθε μέρα από νωρίς το πρωί έως αργά το βράδυ.",
     call: "Καλέστε μας",
     directions: "Οδηγίες",
     badge: "IN COFFEE WE TRUST · ΑΠΟ ΤΟ 2011 · ",
     mainPhotoAlt:
-      "Ο πάγκος του Vento: λάμπες Edison κρεμασμένες σε σχοινιά, αρτοσκευάσματα και κουλούρια, και το τιρκουάζ μπαρ με τη φράση «In Coffee We»",
+      "Η γωνιά του καφέ: μηχανή espresso, στοίβες από φλιτζάνια και ποτήρια για πακέτο στον πάγκο, και το έμβλημα Johann Jacobs Professional σε πετρόλ τοίχο κάτω από μια λάμπα Edison",
     accentPhotoAlt:
-      "Ροζ long drink σε σκαλιστό κρυστάλλινο ποτήρι και γλυκό σε κολονάτο ποτήρι, πάνω σε ασημένιο δίσκο",
+      "Ποτήρι λευκό κρασί και πετρόλ μπολάκι με ξηρούς καρπούς σε ξύλινο τραπέζι, με τα φώτα του μπαρ θολά στο βάθος",
     scroll: "Ανακαλύψτε",
   },
   marquee: [
@@ -353,8 +378,9 @@ const el: Dictionary = {
     "Freddo cappuccino",
     "Cappuccino",
     "Κουλούρι",
-    "Κρουασάν",
-    "Κοκτέιλ",
+    "Club sandwich",
+    "Κρέπες & Bάφλες",
+    "Ποικιλίες",
     "Αθλητικές βραδιές",
     "In Coffee We Trust",
   ],
@@ -363,7 +389,7 @@ const el: Dictionary = {
     title: "Πρώτα ο καφές. Όλα τα άλλα μετά.",
     body: [
       "Από το 2011, το Vento αποτελεί σημείο συνάντησης για όσους αγαπούν τον καλό καφέ και τις όμορφες στιγμές. Με οδηγό τη φιλοσοφία μας “in coffee we trust”, γίναμε μέρος της καθημερινότητας της Λαμίας, συνοδεύοντας τις μικρές και μεγάλες στιγμές της ημέρας.",
-      "Από τον πρώτο espresso νωρίς το πρωί, μέχρι τον αγαπημένο freddo με την παρέα και τα cocktails που δίνουν τον δικό τους ρυθμό στη βραδιά, στο Vento κάθε στιγμή έχει τη δική της θέση.",
+      "Από τον πρώτο espresso νωρίς το πρωί και τον αγαπημένο freddo με την παρέα, μέχρι ένα club sandwich για το μεσημέρι και μια ζεστή κρέπα για το απόγευμα, στο Vento κάθε στιγμή έχει τη δική της θέση.",
       "Με έναν χώρο που συνδυάζει την άνεση με τη ζωντάνια, μια φιλόξενη βεράντα για κάθε ώρα της ημέρας και την ιδανική ατμόσφαιρα για να απολαύσεις τους μεγάλους αθλητικούς αγώνες, το Vento είναι κάτι περισσότερο από μια στάση για καφέ.",
       "Είναι το μέρος όπου ξεκινά η μέρα, συναντιούνται οι παρέες και δημιουργούνται στιγμές που θέλεις να ξαναζήσεις.",
       "Vento. Εκεί που όλα ξεκινούν με έναν καλό καφέ.",
@@ -381,32 +407,32 @@ const el: Dictionary = {
       "Το Vento τη νύχτα: η φωτισμένη βεράντα και το μπαρ στο ισόγειο γωνιακού κτιρίου",
   },
   drinks: {
-    eyebrow: "ΚΑΦΕΣ & ΠΟΤΟ",
-    title: "Από τον πρώτο espresso ως το τελευταίο κοκτέιλ.",
+    eyebrow: "ΚΑΦΕΣ & ΦΑΓΗΤΟ",
+    title: "Από τον πρώτο espresso ως την τελευταία μπουκιά.",
     intro: "Το Vento αλλάζει ρυθμό μαζί με τη μέρα — ποτέ όμως χαρακτήρα.",
     from: (time) => `Από τις ${time}`,
-    until: (time, midnight) => (midnight ? "Ως το βράδυ" : `Ως τις ${time}`),
+    until: (time) => `Ως τις ${time}`,
     moments: {
       morning: {
         label: "Πρωί",
         title: "Η πρωινή ιεροτελεστία",
-        text: "Espresso, cappuccino και freddo όπως πρέπει, με κουλούρι, κρουασάν και κάτι γλυκό από τον πάγκο. Βιάζεστε; Έχουμε και delivery.",
-        tags: ["Espresso", "Freddo", "Cappuccino", "Κουλούρι"],
-        alt: "Το μπαρ του Vento με κρεμαστές λάμπες Edison, αρτοσκευάσματα στον πάγκο και ράφια με μπουκάλια στο βάθος",
+        text: "Espresso, cappuccino και freddo όπως πρέπει, με κουλούρι, κρουασάν ή ένα ζεστό τοστ και μπριός από τον πάγκο. Βιάζεστε; Έχουμε και delivery.",
+        tags: ["Espresso", "Freddo", "Κουλούρι", "Τοστ & μπριός"],
+        alt: "Δύο παγωμένοι καφέδες με καλαμάκι σε ποτήρια Jacobs, ο ένας σκέτος κι ο άλλος με αφρόγαλα, σε τραπέζι της βεράντας κάτω από δέντρο μια ηλιόλουστη μέρα",
       },
       afternoon: {
-        label: "Απόγευμα",
-        title: "Το απογευματινό σας στέκι",
-        text: "Ένας χαλαρός καφές με την παρέα κάτω από τα δέντρα, κάτι δροσερό στη σκιά και ο αγώνας στις οθόνες — από εκείνα τα απογεύματα που κρατάνε ως το βράδυ.",
-        tags: ["Freddo cappuccino", "Αναψυκτικά", "Αθλητικές μεταδόσεις"],
-        alt: "Η γωνιακή βεράντα του Vento το σούρουπο, γεμάτη κόσμο κάτω από δέντρα φωτισμένα από κάτω",
+        label: "Μεσημέρι & απόγευμα",
+        title: "Ώρα για κάτι νόστιμο",
+        text: "Club sandwich με γαλοπούλα, ζαμπόν ή κοτομπουκιές, φρέσκες μπαγκέτες και κρέπες, γλυκές ή αλμυρές, όπως ακριβώς τις θέλετε — με έναν freddo δίπλα, στη σκιά των δέντρων.",
+        tags: ["Club sandwich", "Μπαγκέτες", "Κρέπες", "Βάφλες"],
+        alt: "Από ψηλά: βάφλα με σοκολάτα γάλακτος, λευκή σοκολάτα και τριμμένο μπισκότο, δίπλα σε διπλωμένη κρέπα με σοκολάτα και θρυμματισμένο μπισκότο",
       },
       evening: {
         label: "Βράδυ",
         title: "Όταν ανάβουν τα φώτα",
-        text: "Τον λόγο έχει το μπαρ: κοκτέιλ, long drinks, πλούσια κάβα και καλή παρέα ως το κλείσιμο.",
-        tags: ["Κοκτέιλ", "Long drinks", "Αποστάγματα"],
-        alt: "Ράφια γεμάτα αποστάγματα πίσω από το μπαρ, σε χαμηλό βραδινό φωτισμό",
+        text: "Μια ποικιλία στη μέση του τραπεζιού, ο αγώνας στη μεγάλη οθόνη και, αν το θέλετε, μια παγωμένη μπύρα ή ένα ποτήρι κρασί — με καλή παρέα ως το κλείσιμο.",
+        tags: ["Ποικιλίες", "Αθλητικές βραδιές", "Μπύρα & κρασί"],
+        alt: "Δύο ποτήρια λευκό κρασί σε σκούρο τραπέζι, με τα φώτα και τα ράφια του μπαρ θολά στο βάθος",
       },
     },
   },
@@ -414,15 +440,15 @@ const el: Dictionary = {
     eyebrow: "ΚΑΤΑΛΟΓΟΣ",
     title: "Κάτι για κάθε ώρα.",
     intro:
-      "Καφές, αναψυκτικά, κρέπες και βάφλες, σνακ, μπύρες και κοκτέιλ. Όλες οι τιμές είναι σε ευρώ.",
+      "Καφές, κρέπες και βάφλες, club sandwich, μπαγκέτες, τοστ και ποικιλίες για την παρέα — αλλά και αναψυκτικά, μπύρες και κρασιά. Όλες οι τιμές είναι σε ευρώ.",
     tabs: "Ενότητες καταλόγου",
     free: "δωρεάν",
   },
   gallery: {
     eyebrow: "ΓΚΑΛΕΡΙ",
-    title: "Μια ματιά στο Vento",
+    title: "Μια γεύση από το Vento",
     intro:
-      "Μέσα κι έξω, από το πρωί ως το βράδυ. Πατήστε σε μια φωτογραφία για να τη δείτε σε μεγάλο μέγεθος.",
+      "Καφές, κρέπες, βάφλες και club sandwich, όπως τα σερβίρουμε. Πατήστε σε μια φωτογραφία για να τη δείτε σε μεγάλο μέγεθος.",
     dialogLabel: "Συλλογή φωτογραφιών",
     open: (caption) => `Μεγέθυνση: ${caption}`,
     close: "Κλείσιμο",
@@ -439,7 +465,7 @@ const el: Dictionary = {
         alt: "Παρέες στα τραπέζια της βεράντας δίπλα σε δέντρο τυλιγμένο με φωτάκια, με ζαρντινιέρες με ροζ και κόκκινα λουλούδια μπροστά",
       },
       "evening-drinks": {
-        caption: "Κοκτέιλ και κάτι γλυκό για το κλείσιμο της μέρας.",
+        caption: "Κάτι δροσερό και κάτι γλυκό για το κλείσιμο της μέρας.",
         alt: "Ροζ long drink σε σκαλιστό κρυστάλλινο ποτήρι και γλυκό σε κολονάτο ποτήρι, πάνω σε ασημένιο δίσκο",
       },
       "back-bar": {
@@ -485,6 +511,30 @@ const el: Dictionary = {
       "white-wine": {
         caption: "Λευκό κρασί για δύο.",
         alt: "Δύο ποτήρια λευκό κρασί σε σκούρο τραπέζι, με τα φώτα και τα ράφια του μπαρ θολά στο βάθος",
+      },
+      "freddo-cups": {
+        caption: "Freddo για όλη την παρέα.",
+        alt: "Σειρές από παγωμένους καφέδες με αφρόγαλα σε ποτήρια Vento με θολωτά καπάκια, μερικοί με σαντιγί και κανέλα, παραταγμένοι στον πάγκο μπροστά από τη μηχανή espresso",
+      },
+      "club-sandwich": {
+        caption: "Club sandwich, όπως πρέπει.",
+        alt: "Club sandwich κομμένο σε τρίγωνα, με τραγανό κοτόπουλο, τυρί, ντομάτα και μαρούλι, στερεωμένο με ξυλάκι, δίπλα σε χοντροκομμένες τηγανητές πατάτες σε ξύλινο δίσκο",
+      },
+      "banana-crepe": {
+        caption: "Κρέπα με πραλίνα, μπανάνα και παγωτό.",
+        alt: "Διπλωμένη κρέπα με πραλίνα σοκολάτας και τριμμένο μπισκότο, με φέτες μπανάνας και μπάλα παγωτό φράουλα",
+      },
+      waffles: {
+        caption: "Βάφλες με πραλίνα και παγωτό.",
+        alt: "Δύο βάφλες σε μπλε πιάτα, με πραλίνα σοκολάτας και ανοιχτόχρωμη πραλίνα, τριμμένο μπισκότο και μπάλες παγωτό φράουλα και βανίλια",
+      },
+      "waffle-box": {
+        caption: "Βάφλα με μπανάνα, για πακέτο.",
+        alt: "Κομμάτια βάφλας με κρεμώδη πραλίνα και φέτες μπανάνας σε ανοιχτό λευκό κουτί για πακέτο, στο απογευματινό φως",
+      },
+      "chicken-nuggets": {
+        caption: "Κοτομπουκιές με πατάτες και ροζ σως.",
+        alt: "Τραγανές κοτομπουκιές πάνω σε χοντροκομμένες πατάτες γύρω από μπολάκι με ροζ σως, με ένα πιάτο πατάτες στο βάθος",
       },
     },
   },
@@ -534,11 +584,11 @@ const el: Dictionary = {
     instagram: "Ακολουθήστε μας στο Instagram",
   },
   footer: {
-    tagline: "Καφές, κουλούρι, κοκτέιλ — και καλή παρέα, από το 2011.",
     explore: "Πλοήγηση",
     hours: "Ωράριο",
     visit: "Βρείτε μας",
     rights: (year) => `© ${year} Vento Café. Με επιφύλαξη παντός δικαιώματος.`,
+    credit: "Δημιουργήθηκε από",
     top: "Επιστροφή στην αρχή",
   },
 };

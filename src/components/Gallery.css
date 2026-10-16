@@ -12,8 +12,8 @@
   margin-top: 0;
 }
 
-/* Bento grid tuned for these fourteen photos: one big square, then wide and square tiles,
-   a second big square on the right, and a closing row of two wide landscape shots so every row fills up with no gaps. */
+/* Bento grid tuned for these eight photos: a big square on the left with a wide tile and two squares beside it,
+   then two squares and a wide tile on the left beside a second big square, so every row fills up with no gaps. */
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -22,15 +22,13 @@
 }
 
 .gallery__item:nth-child(1),
-.gallery__item:nth-child(10) {
+.gallery__item:nth-child(7) {
   grid-column: span 2;
   grid-row: span 2;
 }
 
 .gallery__item:nth-child(2),
-.gallery__item:nth-child(5),
-.gallery__item:nth-child(13),
-.gallery__item:nth-child(14) {
+.gallery__item:nth-child(8) {
   grid-column: span 2;
 }
 

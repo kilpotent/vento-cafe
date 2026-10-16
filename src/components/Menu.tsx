@@ -2,7 +2,7 @@ import { useRef, useState, type KeyboardEvent } from 'react'
 import { MENU, type AddOn, type Builder, type MenuCategory, type MenuItem, type MenuTabId } from '../data/menu.ts'
 import { useLanguage } from '../i18n/context.ts'
 import type { Lang } from '../i18n/translations.ts'
-import { CocktailIcon, CoffeeIcon, SodaIcon, UtensilsIcon, WaffleIcon } from './Icons.tsx'
+import { BeerIcon, CoffeeIcon, SodaIcon, UtensilsIcon, WaffleIcon } from './Icons.tsx'
 import './Menu.css'
 
 /** On phones the tabs that aren't selected show only their icon, so all five fit on one row. */
@@ -11,7 +11,7 @@ const TAB_ICONS = {
   'soft-drinks': SodaIcon,
   sweets: WaffleIcon,
   food: UtensilsIcon,
-  bar: CocktailIcon,
+  bar: BeerIcon,
 } satisfies Record<MenuTabId, typeof CoffeeIcon>
 
 const PRICE_FORMAT: Record<Lang, Intl.NumberFormat> = {

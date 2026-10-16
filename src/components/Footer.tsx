@@ -19,7 +19,6 @@ export default function Footer() {
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
           <Logo tone="white" alt={t.hero.logoAlt} sizes="230px" className="site-footer__logo" />
-          <p>{t.footer.tagline}</p>
         </div>
 
         <nav className="site-footer__col" aria-labelledby="footer-explore">
@@ -89,7 +88,16 @@ export default function Footer() {
       </div>
 
       <div className="container site-footer__bottom">
-        <p>{t.footer.rights(year)}</p>
+        <div className="site-footer__legal">
+          <p>{t.footer.rights(year)}</p>
+          <p>
+            {t.footer.credit}{' '}
+            <a href="https://www.mlydesign.gr/" target="_blank" rel="noopener">
+              mlydesign.gr
+              <span className="sr-only">{t.a11y.newTab}</span>
+            </a>
+          </p>
+        </div>
         <LanguageSwitch />
         <a className="site-footer__top" href="#top">
           {t.footer.top}

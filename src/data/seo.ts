@@ -26,7 +26,7 @@ export function structuredData() {
     geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng },
     hasMap: MAPS.place,
     sameAs: [SITE.facebook, SITE.instagram],
-    servesCuisine: ['Coffee', 'Cocktails'],
+    servesCuisine: ['Coffee', 'Crepes', 'Sandwiches'],
     openingHoursSpecification: groupDays(HOURS.cafe).flatMap(({ days, interval }) =>
       interval
         ? [

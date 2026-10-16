@@ -5,37 +5,31 @@ import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from './Icons.tsx'
 import Photo from './Photo.tsx'
 import './Gallery.css'
 
+// Food and coffee only: none of the photos already used higher up the page, and no shots of the shop itself.
 const PHOTOS: readonly GalleryPhoto[] = [
-  'bar-counter',
-  'olive-terrace',
-  'evening-drinks',
-  'back-bar',
-  'night-exterior',
-  'iced-coffee',
-  'white-wine',
-  'coffee-bar',
-  'crepes',
-  'matchday',
-  'drinks',
+  'club-sandwich',
+  'freddo-cups',
+  'banana-crepe',
   'delivery',
-  'dusk-corner',
-  'pergola-night',
+  'waffle-box',
+  'chicken-nuggets',
+  'waffles',
+  'evening-drinks',
 ]
 
 /** Positions in PHOTOS that get a big 2×2 tile (matches the nth-child rules in Gallery.css). */
-const BIG_TILES = [0, 9]
+const BIG_TILES = [0, 6]
 
 /** Keeps each subject in frame inside the cropped grid tiles. */
 const FOCUS: Partial<Record<GalleryPhoto, string>> = {
-  'olive-terrace': '62% 50%',
-  'evening-drinks': '40% 55%',
-  'night-exterior': '50% 82%',
-  'dusk-corner': '55% 62%',
-  'pergola-night': '55% 62%',
-  drinks: '50% 80%',
+  'club-sandwich': '50% 65%',
+  'freddo-cups': '50% 80%',
+  'banana-crepe': '50% 45%',
   delivery: '50% 70%',
-  'iced-coffee': '50% 80%',
-  'white-wine': '50% 90%',
+  'waffle-box': '50% 60%',
+  'chicken-nuggets': '50% 70%',
+  waffles: '50% 60%',
+  'evening-drinks': '40% 55%',
 }
 
 export default function Gallery() {

@@ -35,6 +35,13 @@ const PHOTOS = {
   'delivery': 'delivery.jpg',
   'iced-coffee': 'iced-coffee.jpg',
   'white-wine': 'white-wine.jpg',
+  // trims the thin gold frame along the left and right edges of the original screenshot
+  'freddo-cups': { file: 'freddo-cups.jpeg', extract: { left: 6, top: 0, width: 932, height: 1343 } },
+  'club-sandwich': 'club-sandwich.jpeg',
+  'banana-crepe': 'banana-crepe.jpeg',
+  'waffles': 'waffles.jpeg',
+  'waffle-box': 'waffle-box.jpeg',
+  'chicken-nuggets': 'chicken-nuggets.jpeg',
 }
 const PHOTO_WIDTHS = [480, 960, 1600]
 

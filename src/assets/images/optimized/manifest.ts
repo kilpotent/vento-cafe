@@ -44,6 +44,23 @@ import icedCoffee1200 from './iced-coffee-1200.webp'
 import whiteWine480 from './white-wine-480.webp'
 import whiteWine960 from './white-wine-960.webp'
 import whiteWine1200 from './white-wine-1200.webp'
+import freddoCups480 from './freddo-cups-480.webp'
+import freddoCups932 from './freddo-cups-932.webp'
+import clubSandwich480 from './club-sandwich-480.webp'
+import clubSandwich960 from './club-sandwich-960.webp'
+import clubSandwich1200 from './club-sandwich-1200.webp'
+import bananaCrepe480 from './banana-crepe-480.webp'
+import bananaCrepe960 from './banana-crepe-960.webp'
+import bananaCrepe1200 from './banana-crepe-1200.webp'
+import waffles480 from './waffles-480.webp'
+import waffles960 from './waffles-960.webp'
+import waffles1200 from './waffles-1200.webp'
+import waffleBox480 from './waffle-box-480.webp'
+import waffleBox960 from './waffle-box-960.webp'
+import waffleBox1290 from './waffle-box-1290.webp'
+import chickenNuggets480 from './chicken-nuggets-480.webp'
+import chickenNuggets960 from './chicken-nuggets-960.webp'
+import chickenNuggets1200 from './chicken-nuggets-1200.webp'
 import logoWhite600 from './logo-white-600.webp'
 import logoWhite1200 from './logo-white-1200.webp'
 import logoWhiteCompact from './logo-white-compact.webp'
@@ -144,6 +161,42 @@ export const photos = {
     height: 1600,
     lqip: 'data:image/webp;base64,UklGRvgAAABXRUJQVlA4IOwAAAAQBQCdASoYACAAPulgo02pJaMiMAwBIB0JQBXHqYQawtwfsBku/Nr2guJlSQ0Y9IYAAP7dDnCKUrQc46VPSuHfxYsDk16Z/8kSp3OoY44RwPXE6k/2NcYtlpJ0mjmLKgOg/73HtRut4tZ3IThWFJ9zb62WxVN8W8PaReMMjcrzjCpzCoSSm8Qh9KFPq11zBCz3qs9qOnnMFF78o9AAE3wvQeva3ySr4oTZBYwHmgcg6IUpuBJBbUL97SSJriLAsy52ZPATr0RHKZqj1XPsaUWKQShNiYsus7388ms26lI3KZLsHClIqlMpXQAAAA==',
     sources: [[whiteWine480, 480], [whiteWine960, 960], [whiteWine1200, 1200]],
+  },
+  'freddo-cups': {
+    width: 932,
+    height: 1343,
+    lqip: 'data:image/webp;base64,UklGRhgBAABXRUJQVlA4IAwBAADQBgCdASoYACMAPu1qqlAppiOiqrgMATAdiWQAss8vSbK0/MyraDuGa0ubwjERqbhtU2mq60oImFRczBxxXxgA/tF6uO1Fba9G/4w0yIU039h1KyVgdBCa/VJegU+DTj0fEext+FhJ2arX5LCbIVt8OpAAf8x4cWgdlpPv4WHcPbo5HayPjl4bMx11YMN3+dd/02zXYR/eZXfHTLjdKQmWOswH6Ud2lC0hqG1S2lBoATVHIungB9Dl8tABpKXxascd+w1M5fP6B4EHNjMrSupXGQkEovrQFTRBf4qGrxUYSVvIZwHooE/STNTl0mKxFEh7UTWOZqJrGpixYxky7HLXksgsa/V56NOwQAAA',
+    sources: [[freddoCups480, 480], [freddoCups932, 932]],
+  },
+  'club-sandwich': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRkwBAABXRUJQVlA4IEABAAAwBgCdASoYACAAPu1gqE2ppaOiMAgBMB2JbACdMuz/VSAbhmkCZ8BJfRcrJW2btl/20DtdBVumG/QAAP6607qBe2zSdLO/N4L6AwOFDiwZnLGkqCZ4Yw1OatkPqQOfEVP9jGn3DDbkPxm6xjZ36ot3nn4+QnEKyMQSOjylVUIWE8KJEkK5mm6L7SZA6YidJr4xZ+ttEoaUY6qW9GNUAE2KfE19hUUoIYVwLdcEbR6zmg5Bx7NZAqW8jIwxBXkCHSoOQCLpxEFtzCFsMBPZuZtuz2Vqfy/+p7hfREaOIFinRbeFDEa9H5675GtPGAI7Gd1WVBu5ziAisUe9s5bpnsqq2+kTpGjAm3d8iMP/4zStYltA5oUMjzCP1TdQBFTHz+R/D4jAIfQ3mKGILQZBzAhd2ah7BKbe7YqX5aKF1nvAAA==',
+    sources: [[clubSandwich480, 480], [clubSandwich960, 960], [clubSandwich1200, 1200]],
+  },
+  'banana-crepe': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRjABAABXRUJQVlA4ICQBAADwBgCdASoYACAAPu1gqE2ppaOiMAgBMB2JZACdM1o4Lf/s0FtHGBWue8lBMgB/ER+ELeQ9eX/t1a9+Ltlx98j8AP5m0l5Z+Ghu+TpJMQZp7vGUohkjJ7G8y4vljVk8wUqEjLcg6rHKSiumojGn0gn1eyltlhAyD01YqQZeFXJy9mFWhRZz8btzhrnJ99TB0oAaPxlwbhpZgY4cpytm0Ih/1oaHD8onhO67lW6Ypdmtwa4zIUICRw0mcyee4GdBM5xGzmfFGi5am94OhT7NmQ13MHtmQ7T68eyFl5UJ61dBXMmi3GA/8mgWc7cDkg2WH+5C0KinlR/dw4mnbmQ1jHo8TI3+LplXefEg3+D+m/BRBZAixrBf99VwymVInWIPfJWOoHAA',
+    sources: [[bananaCrepe480, 480], [bananaCrepe960, 960], [bananaCrepe1200, 1200]],
+  },
+  'waffles': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRlwBAABXRUJQVlA4IFABAABwBgCdASoYACAAPu1gp02ppSMiMAgBMB2JbACdMoBnKCTJnIUvBPENbGDSNbdXwi9MituEgYDRLHDjKlAA9yzP+Z9bcyaQOK+/soFhW5/UXuavwLYKNInmR4CyvsMTNjJywdOIEAmkX8xPPIFtWH6qq9k6STP/VwG63t8V7bUP7Ezdt5GNU12dcJuDwfUCzTjxXJKg0cqEor9uHbCL5axrJcSPFx6cxj5tZiLp8u9ZqJTmxbFd+Duhq4OBlZXwuyIXs1b56aq/FduWuZhLLgYP9zXgkFejXVVZ00ME/Rnjz8OttgEer0CzyG0xLqbkGsTq9pB7XFeweLDF5dtot+LFcf4up0vJROpT+lARJKn4bq6qw1CpSUd4iY6AMdFyFIdVPRKxy4FeTDpP6z28Td/yz7HnKMICptcGbCnvJdswAxlAFKfgsJvSGANX/aWgAAA=',
+    sources: [[waffles480, 480], [waffles960, 960], [waffles1200, 1200]],
+  },
+  'waffle-box': {
+    width: 1290,
+    height: 1720,
+    lqip: 'data:image/webp;base64,UklGRhwBAABXRUJQVlA4IBABAADwBQCdASoYACAAPu1gq1AppSOisBgIATAdiWoAvkncC4i6Z5+m/AXMi0xdbVKcHGNB+5HSxj2yAAD6n9diD9Gr3+Wu5JFpHd0c+sC/ueKETgcfM0VJK5pocoQPuHWGKSg1XVBqrjMDxZbS/cAKtdc6uohxbDiaua4HNlKxEOw4H2uCtQWQDpKRS46IenRyg29sNpAu0rOcXVJos0ICweqPi5zMQM8tvNtCnoxg1I+IBgrzLTBcOc5QYFZ+haoVoD52EhRfzuUHxaFUGSkec0CYO1fLff89lcjAtSz3OEGHKMyWguF8ipBeHuy8/ZLRzgn9sn1eNtmpXQqPAteCaEJetgfw0lHZYYxtvKyazowAAA==',
+    sources: [[waffleBox480, 480], [waffleBox960, 960], [waffleBox1290, 1290]],
+  },
+  'chicken-nuggets': {
+    width: 1200,
+    height: 1600,
+    lqip: 'data:image/webp;base64,UklGRloBAABXRUJQVlA4IE4BAACQBwCdASoYACAAPu1iqE2ppaOiMAgBMB2JbACdMuN+ItJxbdkwz4Jlz5MxYWCxLkFY+/vsnDCay7Dh90kN4mw54DMOegAA/diI9UTX9kOPTxj5gMZa3uwEBVSqQiR27sI6exknhIuwnOKtl9KL2EgAViApqfgwLSnMECd8FnUZfpwYTEMi5jTauNjc2OPNxWcsiZk8ee+diNlRzf8dFFhQwHYZx05xepUmjOw3aIjtMi0YG8jc7uv1kniV9D/X2fvPXlhC0zoDdHccLBvEatLv2wKj4oLFSl4J72D1EBHgylfmouClx5RObtBcFWu14ihm9RRhXSsS43vy8e4r/JxEi3HQvRKiE21bxJudXafx0TX/03joHDviHU0S1RxSfqwuQRJs/Ns4D4wgjJD+x3+nLq9bhlFhkB1s/AY1ewKJsZsZcNBaKQi6bjIx7AAA',
+    sources: [[chickenNuggets480, 480], [chickenNuggets960, 960], [chickenNuggets1200, 1200]],
   },
 } satisfies Record<string, { width: number; height: number; lqip: string; sources: readonly Source[] }>
 
