@@ -42,7 +42,7 @@ Built with Vite, React 19 and TypeScript, styled with plain CSS.
   `<html lang>`, page title and description switch with it.
 - **SEO:** schema.org `CafeOrCoffeeShop` structured data and a plain-HTML fallback are generated from `site.ts` at build
   time (see `vite.config.ts`).
-- **Images:** responsive WebP sizes with blur-up placeholders; fonts (Noto Serif Display, Manrope) are self-hosted and
+- **Images:** responsive WebP sizes with blur-up placeholders; fonts (Literata, Manrope) are self-hosted and
   only the Latin and Greek subsets are downloaded.
 - **Accessibility:** keyboard-friendly menu and gallery (native `<dialog>`), skip link, reduced-motion support.
 

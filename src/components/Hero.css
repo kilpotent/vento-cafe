@@ -10,11 +10,22 @@
   background:
     radial-gradient(
       60% 55% at 80% 105%,
-      rgb(243 184 96 / 0.22),
+      rgb(243 184 96 / 0.27),
       transparent 70%
     ),
-    radial-gradient(55% 50% at 0% 0%, rgb(32 140 204 / 0.24), transparent 65%),
-    linear-gradient(180deg, var(--night-950), var(--night-900) 65%);
+    radial-gradient(55% 50% at 0% 0%, rgb(39 163 207 / 0.2), transparent 65%),
+    radial-gradient(45% 35% at 15% 100%, rgb(39 163 207 / 0.12), transparent 70%),
+    linear-gradient(180deg, var(--night-950), var(--night-900) 60%, var(--night-800));
+}
+
+/* Gold-rimmed instead of white, to sit with the gold call button. */
+.hero .btn--ghost {
+  box-shadow: inset 0 0 0 1px rgb(200 156 104 / 0.6);
+}
+
+.hero .btn--ghost:hover {
+  background: rgb(200 156 104 / 0.1);
+  box-shadow: inset 0 0 0 1px var(--gold-300);
 }
 
 .hero__grid {
@@ -81,7 +92,7 @@
   max-width: none;
   transform: translateX(-50%);
   color: var(--gold);
-  opacity: 0.4;
+  opacity: 0.5;
   pointer-events: none;
   mask-image: radial-gradient(50% 100% at 50% 100%, #000 25%, transparent 80%);
   -webkit-mask-image: radial-gradient(
@@ -130,7 +141,7 @@
   width: clamp(112px, 30%, 150px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--night-900);
+  background: radial-gradient(circle at 30% 25%, var(--night-700), var(--night-900) 70%);
   box-shadow:
     inset 0 0 0 1px rgb(200 156 104 / 0.55),
     var(--shadow-lg);
@@ -191,35 +202,48 @@
   color: #fff;
 }
 
-.hero__scroll-line {
-  position: relative;
-  width: 1px;
-  height: 2.6rem;
-  overflow: hidden;
-  background: rgb(255 255 255 / 0.18);
+.hero__cup {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--gold);
+  transition: transform 0.35s var(--ease-out);
 }
 
-.hero__scroll-line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--gold);
-  transform: translateY(-100%);
+.hero__scroll:hover .hero__cup {
+  transform: translateY(3px);
+}
+
+.hero__steam {
+  stroke: var(--cream-50);
+  opacity: 0.5;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero__scroll-line::after {
-    animation: scroll-cue 2.2s var(--ease-out) infinite;
+  .hero__steam {
+    opacity: 0;
+    animation: steam 2.8s ease-in-out infinite;
+  }
+
+  .hero__steam:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .hero__steam:nth-child(3) {
+    animation-delay: 1s;
   }
 }
 
-@keyframes scroll-cue {
+@keyframes steam {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(4px);
+    opacity: 0;
   }
-  60%,
+  45% {
+    opacity: 0.65;
+  }
   100% {
-    transform: translateY(100%);
+    transform: translateY(-5px);
+    opacity: 0;
   }
 }
 

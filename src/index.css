@@ -4,6 +4,17 @@
    (night-blue sky, turquoise bar, warm Edison bulbs).
    ========================================================================== */
 
+/* Literata's digits (and the colon in times) layered in front of every font stack, so numbers
+   anywhere on the page match the headings. Same file as the Literata headings, so it downloads once. */
+@font-face {
+  font-family: 'Literata Numerals';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url('@fontsource-variable/literata/files/literata-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0030-003A;
+}
+
 :root {
   --night-950: #050d1c;
   --night-900: #0a1730;
@@ -26,8 +37,8 @@
   --open: #5ad39a;
   --closed: #f08a7e;
 
-  --font-display: 'Noto Serif Display Variable', 'Noto Serif Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Literata Variable', 'Literata', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Literata Numerals', 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --container: 1240px;
   --gutter: clamp(1rem, 4vw, 2.5rem);

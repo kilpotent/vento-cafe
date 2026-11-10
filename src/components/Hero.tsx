@@ -88,8 +88,8 @@ export default function Hero() {
       </div>
 
       <a className="hero__scroll" href="#story">
+        <SteamingCup />
         <span>{t.hero.scroll}</span>
-        <span className="hero__scroll-line" aria-hidden="true" />
       </a>
     </section>
   );
@@ -121,6 +121,30 @@ function Sunburst() {
         <path d="M300 600a300 300 0 0 1 600 0" />
         <path d="M120 600a480 480 0 0 1 960 0" />
       </g>
+    </svg>
+  );
+}
+
+/** The "Discover" scroll cue: a cup on its saucer with steam curling off it. */
+function SteamingCup() {
+  return (
+    <svg
+      className="hero__cup"
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path className="hero__steam" d="M17 19c-2-2.5 2-4.5 0-7s2-4.5 0-7" />
+      <path className="hero__steam" d="M23 19c-2-2.5 2-4.5 0-7s2-4.5 0-7" />
+      <path className="hero__steam" d="M29 19c-2-2.5 2-4.5 0-7s2-4.5 0-7" />
+      <path d="M11 23h24v7a10 10 0 0 1-10 10h-4a10 10 0 0 1-10-10z" />
+      <path d="M35 26h2.5a4 4 0 0 1 0 8H34" />
+      <path d="M8 44h30" />
     </svg>
   );
 }

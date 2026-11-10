@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '@fontsource-variable/literata/wght.css'
+import '@fontsource-variable/literata/wght-italic.css'
 import '@fontsource-variable/manrope/wght.css'
-import '@fontsource-variable/noto-serif-display/wght.css'
-import '@fontsource-variable/noto-serif-display/wght-italic.css'
 import './index.css'
 import App from './App.tsx'
 
