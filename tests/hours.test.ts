@@ -6,6 +6,7 @@ import {
   cafeTime,
   formatDays,
   formatInterval,
+  formatOpenUntil,
   formatTime,
   groupDays,
   statusAt,
@@ -111,6 +112,10 @@ describe('formatting', () => {
     assert.equal(formatTime(at(24)), '00:00')
     assert.equal(formatTime(at(26)), '02:00')
     assert.equal(formatInterval({ open: at(5), close: at(24) }), '05:00 – 00:00')
+  })
+
+  test('café hours never show the closing time', () => {
+    assert.equal(formatOpenUntil({ open: at(5), close: at(24) }, 'late'), '05:00 – late')
   })
 
   test('grouping days with identical hours', () => {

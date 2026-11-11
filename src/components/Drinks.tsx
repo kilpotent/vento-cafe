@@ -32,11 +32,10 @@ export default function Drinks() {
 
   const days = openDays(HOURS.cafe);
   const earliest = Math.min(...days.map((day) => HOURS.cafe[day]!.open));
-  const latest = Math.max(...days.map((day) => HOURS.cafe[day]!.close));
   const times: Record<(typeof MOMENTS)[number]["key"], string | null> = {
     morning: t.drinks.from(formatTime(earliest)),
     afternoon: null,
-    evening: t.drinks.until(formatTime(latest)),
+    evening: t.drinks.untilLate,
   };
 
   return (
@@ -66,7 +65,7 @@ export default function Drinks() {
           </span>
           <span className="dayline__track" />
           <span className="dayline__end">
-            {formatTime(latest)}
+            {t.hours.late}
             <MoonIcon />
           </span>
         </div>

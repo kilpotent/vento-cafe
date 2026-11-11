@@ -21,6 +21,8 @@ export type WeekSchedule = readonly [
 
 const at = (hours: number, minutes = 0) => hours * 60 + minutes;
 
+// The café's closing time is never shown: the site says "until late" instead. `close` is only a
+// rough cut-off for the live "open now / closed now" status and the fading end of the dial's arc.
 const weekday: Interval = { open: at(5), close: at(24) };
 const sunday: Interval = { open: at(6), close: at(24) };
 const delivery: Interval = { open: at(5), close: at(21) };
@@ -42,6 +44,12 @@ export const SITE = {
       display: "2231 036514",
       international: "+30 2231 036514",
       tel: "+302231036514",
+    },
+    {
+      kind: "landline",
+      display: "2231 066011",
+      international: "+30 2231 066011",
+      tel: "+302231066011",
     },
     {
       kind: "mobile",

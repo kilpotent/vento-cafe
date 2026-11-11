@@ -1,8 +1,8 @@
 // schema.org structured data and a no-JavaScript fallback, both generated from site.ts and
 // injected into index.html by the plugin in vite.config.ts. Runs in Node: no browser APIs.
 import { DAY_NAMES } from '../i18n/days.ts'
-import { formatDays, formatInterval, formatTime, groupDays } from '../lib/hours.ts'
-import { HOURS, MAPS, SITE } from './site.ts'
+import { formatDays, formatInterval, formatOpenUntil, formatTime, groupDays } from '../lib/hours.ts'
+import { HOURS, MAPS, SITE, type Interval } from './site.ts'
 
 const SCHEMA_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -45,12 +45,24 @@ export function structuredData() {
 const escapeHtml = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-function scheduleLine(schedule: typeof HOURS.cafe | typeof HOURS.delivery, lang: 'el' | 'en') {
+type Lang = 'el' | 'en'
+
+// Same wording as translations.ts, which can't be imported here (its image types need Vite).
+const LATE: Record<Lang, string> = { el: 'αργά το βράδυ', en: 'late' }
+
+function scheduleLine(
+  schedule: typeof HOURS.cafe | typeof HOURS.delivery,
+  lang: Lang,
+  format: (interval: Interval) => string,
+) {
   return groupDays(schedule)
     .filter((group) => group.interval)
-    .map((group) => `${formatDays(group.days, DAY_NAMES[lang].long, ' – ')} ${formatInterval(group.interval!)}`)
+    .map((group) => `${formatDays(group.days, DAY_NAMES[lang].long, ' – ')} ${format(group.interval!)}`)
     .join(' · ')
 }
+
+const cafeLine = (lang: Lang) => scheduleLine(HOURS.cafe, lang, (interval) => formatOpenUntil(interval, LATE[lang]))
+const deliveryLine = (lang: Lang) => scheduleLine(HOURS.delivery, lang, formatInterval)
 
 /** Essential details for visitors and crawlers without JavaScript. */
 export function noscriptHtml(): string {
@@ -58,9 +70,9 @@ export function noscriptHtml(): string {
   const phones = SITE.phones.map((phone) => `<a href="tel:${phone.tel}">${escapeHtml(phone.display)}</a>`).join(' · ')
   const rows = [
     ['Διεύθυνση / Address', `${address.street.el}, ${address.postalCode} ${address.city.el} (${address.landmark.el})`],
-    ['Ωράριο', scheduleLine(HOURS.cafe, 'el')],
-    ['Hours', scheduleLine(HOURS.cafe, 'en')],
-    ['Delivery', `${scheduleLine(HOURS.delivery, 'el')} / ${scheduleLine(HOURS.delivery, 'en')}`],
+    ['Ωράριο', cafeLine('el')],
+    ['Hours', cafeLine('en')],
+    ['Delivery', `${deliveryLine('el')} / ${deliveryLine('en')}`],
   ]
   return [
     '<div style="font-family:system-ui,sans-serif;max-width:42rem;margin:3rem auto;padding:0 1.25rem;line-height:1.6">',

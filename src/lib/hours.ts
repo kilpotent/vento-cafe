@@ -75,7 +75,8 @@ export function formatTime(minutes: number): string {
 
 export const formatInterval = ({ open, close }: Interval) => `${formatTime(open)} – ${formatTime(close)}`
 
-export const isMidnight = (minutes: number) => minutes % DAY_MINUTES === 0
+/** Café hours with an open-ended close: "05:00 – late". `late` is the translated word. */
+export const formatOpenUntil = ({ open }: Interval, late: string) => `${formatTime(open)} – ${late}`
 
 export interface DayGroup {
   days: DayIndex[]

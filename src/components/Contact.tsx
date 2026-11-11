@@ -1,6 +1,6 @@
 import { HOURS, MAPS, SITE } from '../data/site.ts'
 import { useLanguage } from '../i18n/context.ts'
-import { formatDays, formatInterval, groupDays } from '../lib/hours.ts'
+import { formatDays, formatOpenUntil, groupDays } from '../lib/hours.ts'
 import { ClockIcon, ExternalIcon, FacebookIcon, InstagramIcon, NavigationIcon, PhoneIcon, PinIcon } from './Icons.tsx'
 import Logo from './Logo.tsx'
 import './Contact.css'
@@ -60,7 +60,7 @@ export default function Contact() {
                   {groupDays(HOURS.cafe).map((group) => (
                     <li key={group.days[0]}>
                       <span className="contact__days">{formatDays(group.days, t.daysShort)}</span>
-                      {group.interval ? formatInterval(group.interval) : t.hours.closed}
+                      {group.interval ? formatOpenUntil(group.interval, t.hours.late) : t.hours.closed}
                     </li>
                   ))}
                 </ul>

@@ -64,9 +64,7 @@ const en = {
   status: {
     open: "Open now",
     closed: "Closed now",
-    closesMidnight: "closes at 00:00",
-    closesAt: (time: string) => `closes at ${time}`,
-    closesIn: (minutes: number) => `closes in ${minutes} min`,
+    untilLate: "until late",
     opens: (when: string) => `opens ${when}`,
   },
   phoneKinds: { landline: "Landline", mobile: "Mobile" } satisfies Record<
@@ -126,7 +124,7 @@ const en = {
     title: "From the first espresso to the last bite.",
     intro: "Vento changes pace with the day — never its character.",
     from: (time: string) => `From ${time}`,
-    until: (time: string) => `Until ${time}`,
+    untilLate: "Until late",
     moments: {
       morning: {
         label: "Morning",
@@ -264,7 +262,9 @@ const en = {
     delivery: "Delivery",
     today: "Today",
     closed: "Closed",
-    noDelivery: "No delivery",
+    /** Stands in for the café's closing time: "05:00 – late". */
+    late: "late",
+    takeawayOnly: "Takeaway only",
     localTime: "Time in Lamia",
     legend: { cafe: "Café open", delivery: "Delivery", now: "Now" },
     dialLabel: (
@@ -273,7 +273,7 @@ const en = {
       delivery: string | null,
       now: string,
     ) =>
-      `${day}: café ${cafe ?? "closed"}${delivery ? `, delivery ${delivery}` : ", no delivery"}. Time in Lamia: ${now}.`,
+      `${day}: café ${cafe ?? "closed"}${delivery ? `, delivery ${delivery}` : ", takeaway only"}. Time in Lamia: ${now}.`,
     timezone: "All times are Greek local time.",
   },
   delivery: {
@@ -283,10 +283,10 @@ const en = {
     openNow: (until: string) => `Delivery open now · until ${until}`,
     next: (when: string) => `Next delivery: ${when}`,
     unavailable: "Delivery is currently unavailable.",
-    closedOn: (days: readonly number[]) =>
-      `No delivery ${joinList(
+    takeawayOnly: (days: readonly number[]) =>
+      `Takeaway only ${joinList(
         days.map((day) => enDays.on[day]),
-        "or",
+        "and",
       )}.`,
   },
   contact: {
@@ -317,7 +317,7 @@ const el: Dictionary = {
   meta: {
     title: "Vento Café Λαμία — In Coffee We Trust",
     description:
-      "Το Vento Café στη Λαμία, από το 2011: καφές, κρέπες και βάφλες, club sandwich, ποικιλίες και αθλητικές βραδιές. Ανοιχτά κάθε μέρα από νωρίς το πρωί ως το βράδυ, με delivery Δευτέρα έως Σάββατο.",
+      "Το Vento Café στη Λαμία, από το 2011: καφές, κρέπες και βάφλες, club sandwich, ποικιλίες και αθλητικές βραδιές. Ανοιχτά κάθε μέρα από νωρίς το πρωί έως αργά το βράδυ, με delivery Δευτέρα έως Σάββατο.",
   },
   a11y: {
     skip: "Μετάβαση στο περιεχόμενο",
@@ -351,10 +351,7 @@ const el: Dictionary = {
   status: {
     open: "Ανοιχτά τώρα",
     closed: "Κλειστά τώρα",
-    closesMidnight: "κλείνει στις 00:00",
-    closesAt: (time) => `κλείνει στις ${time}`,
-    closesIn: (minutes) =>
-      `κλείνει σε ${minutes} ${minutes === 1 ? "λεπτό" : "λεπτά"}`,
+    untilLate: "έως αργά το βράδυ",
     opens: (when) => `ανοίγει ${when}`,
   },
   phoneKinds: { landline: "Σταθερό", mobile: "Κινητό" },
@@ -411,7 +408,7 @@ const el: Dictionary = {
     title: "Από τον πρώτο espresso ως την τελευταία μπουκιά.",
     intro: "Το Vento αλλάζει ρυθμό μαζί με τη μέρα — ποτέ όμως χαρακτήρα.",
     from: (time) => `Από τις ${time}`,
-    until: (time) => `Ως τις ${time}`,
+    untilLate: "Έως αργά το βράδυ",
     moments: {
       morning: {
         label: "Πρωί",
@@ -549,11 +546,12 @@ const el: Dictionary = {
     delivery: "Delivery",
     today: "Σήμερα",
     closed: "Κλειστά",
-    noDelivery: "Χωρίς delivery",
+    late: "αργά το βράδυ",
+    takeawayOnly: "Μόνο take away",
     localTime: "Ώρα Λαμίας",
     legend: { cafe: "Ανοιχτά", delivery: "Delivery", now: "Τώρα" },
     dialLabel: (day, cafe, delivery, now) =>
-      `${day}: κατάστημα ${cafe ?? "κλειστό"}${delivery ? `, delivery ${delivery}` : ", χωρίς delivery"}. Ώρα Λαμίας: ${now}.`,
+      `${day}: κατάστημα ${cafe ?? "κλειστό"}${delivery ? `, delivery ${delivery}` : ", μόνο take away"}. Ώρα Λαμίας: ${now}.`,
     timezone: "Όλες οι ώρες είναι ώρα Ελλάδας.",
   },
   delivery: {
@@ -563,12 +561,12 @@ const el: Dictionary = {
     openNow: (until) => `Το delivery είναι ανοιχτό τώρα · ως τις ${until}`,
     next: (when) => `Επόμενο delivery: ${when}`,
     unavailable: "Το delivery δεν είναι διαθέσιμο αυτή τη στιγμή.",
-    closedOn: (days) =>
+    takeawayOnly: (days) =>
       capitalize(
         `${joinList(
           days.map((day) => elDays.on[day]),
           "και",
-        )} δεν έχουμε delivery.`,
+        )} μόνο take away.`,
       ),
   },
   contact: {

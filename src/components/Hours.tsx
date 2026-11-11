@@ -7,6 +7,7 @@ import {
   DAY_MINUTES,
   formatDays,
   formatInterval,
+  formatOpenUntil,
   formatTime,
   groupDays,
   type DayIndex,
@@ -74,9 +75,18 @@ export default function Hours() {
                         {t.days[day]}
                         {isToday && <span className="hours-table__today">{t.hours.today}</span>}
                       </th>
-                      <td>{cafe ? formatInterval(cafe) : t.hours.closed}</td>
+                      <td className="hours-table__cafe">
+                        {cafe ? (
+                          // Two unbreakable halves: on narrow layouts "late" drops to its own line.
+                          <>
+                            <span>{formatTime(cafe.open)} –</span> <span>{t.hours.late}</span>
+                          </>
+                        ) : (
+                          t.hours.closed
+                        )}
+                      </td>
                       <td className={slot ? undefined : 'hours-table__muted'}>
-                        {slot ? formatInterval(slot) : t.hours.noDelivery}
+                        {slot ? formatInterval(slot) : t.hours.takeawayOnly}
                       </td>
                     </tr>
                   )
@@ -98,10 +108,17 @@ export default function Hours() {
 const C = 180
 const R_CAFE = 128
 const R_DELIVERY = 103
+/** The café closes "late", not at a set hour, so the last stretch of its arc fades out. */
+const LATE_FADE_MINUTES = 120
+
+function coords(radius: number, minutes: number) {
+  const angle = (minutes / DAY_MINUTES) * Math.PI * 2
+  return { x: C + radius * Math.sin(angle), y: C - radius * Math.cos(angle) }
+}
 
 function point(radius: number, minutes: number) {
-  const angle = (minutes / DAY_MINUTES) * Math.PI * 2
-  return `${(C + radius * Math.sin(angle)).toFixed(2)} ${(C - radius * Math.cos(angle)).toFixed(2)}`
+  const { x, y } = coords(radius, minutes)
+  return `${x.toFixed(2)} ${y.toFixed(2)}`
 }
 
 function arcPath(radius: number, { open, close }: Interval) {
@@ -113,14 +130,47 @@ function arcPath(radius: number, { open, close }: Interval) {
   return `M${point(radius, open)}A${radius} ${radius} 0 ${span > DAY_MINUTES / 2 ? 1 : 0} 1 ${point(radius, close)}`
 }
 
+/** `closing`: the segment ends at closing time, rather than being cut off at midnight. */
+type Segment = Interval & { closing: boolean }
+
 /** The parts of a day covered by the schedule, including yesterday's hours that run past midnight. */
-function segments(schedule: WeekSchedule, day: DayIndex): Interval[] {
-  const result: Interval[] = []
+function segments(schedule: WeekSchedule, day: DayIndex): Segment[] {
+  const result: Segment[] = []
   const yesterday = schedule[(day + 6) % 7]
-  if (yesterday && yesterday.close > DAY_MINUTES) result.push({ open: 0, close: yesterday.close - DAY_MINUTES })
+  if (yesterday && yesterday.close > DAY_MINUTES) {
+    result.push({ open: 0, close: yesterday.close - DAY_MINUTES, closing: true })
+  }
   const today = schedule[day]
-  if (today) result.push({ open: today.open, close: Math.min(today.close, DAY_MINUTES) })
+  if (today) {
+    result.push({ open: today.open, close: Math.min(today.close, DAY_MINUTES), closing: today.close <= DAY_MINUTES })
+  }
   return result
+}
+
+/** A café segment whose closing end fades to transparent along a gradient. */
+function CafeArc({ open, close, closing }: Segment) {
+  const fadeFrom = closing ? Math.max(open, close - LATE_FADE_MINUTES) : close
+  const id = `dial-fade-${open}`
+  const from = coords(R_CAFE, fadeFrom)
+  const to = coords(R_CAFE, close)
+  return (
+    <>
+      {fadeFrom > open && <path className="dial__arc dial__arc--cafe" d={arcPath(R_CAFE, { open, close: fadeFrom })} />}
+      {fadeFrom < close && (
+        <>
+          <linearGradient id={id} gradientUnits="userSpaceOnUse" x1={from.x} y1={from.y} x2={to.x} y2={to.y}>
+            <stop offset="0" className="dial__fade-stop" />
+            <stop offset="1" className="dial__fade-stop" stopOpacity="0" />
+          </linearGradient>
+          <path
+            className="dial__arc dial__arc--cafe"
+            style={{ stroke: `url(#${id})` }}
+            d={arcPath(R_CAFE, { open: fadeFrom, close })}
+          />
+        </>
+      )}
+    </>
+  )
 }
 
 function Dial({ day, minutes }: { day: DayIndex; minutes: number }) {
@@ -129,7 +179,7 @@ function Dial({ day, minutes }: { day: DayIndex; minutes: number }) {
   const delivery = HOURS.delivery[day]
   const label = t.hours.dialLabel(
     t.days[day],
-    cafe ? formatInterval(cafe) : null,
+    cafe ? formatOpenUntil(cafe, t.hours.late) : null,
     delivery ? formatInterval(delivery) : null,
     formatTime(minutes),
   )
@@ -169,7 +219,7 @@ function Dial({ day, minutes }: { day: DayIndex; minutes: number }) {
       })}
 
       {segments(HOURS.cafe, day).map((segment) => (
-        <path key={`c${segment.open}`} className="dial__arc dial__arc--cafe" d={arcPath(R_CAFE, segment)} />
+        <CafeArc key={`c${segment.open}`} {...segment} />
       ))}
       {segments(HOURS.delivery, day).map((segment) => (
         <path key={`d${segment.open}`} className="dial__arc dial__arc--delivery" d={arcPath(R_DELIVERY, segment)} />
@@ -199,7 +249,7 @@ function DeliveryCard({ status }: { status: Status }) {
   const { t } = useLanguage()
   const live = describeDelivery(t, status)
   const slots = groupDays(HOURS.delivery).filter((group) => group.interval)
-  const noDeliveryDays = closedDays(HOURS.delivery)
+  const takeawayDays = closedDays(HOURS.delivery)
 
   return (
     <aside className="delivery-card" aria-labelledby="delivery-title" data-reveal>
@@ -230,7 +280,7 @@ function DeliveryCard({ status }: { status: Status }) {
           </a>
         ))}
       </div>
-      {noDeliveryDays.length > 0 && <p className="delivery-card__note">{t.delivery.closedOn(noDeliveryDays)}</p>}
+      {takeawayDays.length > 0 && <p className="delivery-card__note">{t.delivery.takeawayOnly(takeawayDays)}</p>}
     </aside>
   )
 }

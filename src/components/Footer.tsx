@@ -2,7 +2,7 @@ import { SECTIONS } from '../data/nav.ts'
 import { HOURS, SITE } from '../data/site.ts'
 import { useYear } from '../hooks/useNow.ts'
 import { useLanguage } from '../i18n/context.ts'
-import { formatDays, formatInterval, groupDays } from '../lib/hours.ts'
+import { formatDays, formatInterval, formatOpenUntil, groupDays } from '../lib/hours.ts'
 import { ArrowUpIcon, FacebookIcon, InstagramIcon } from './Icons.tsx'
 import LanguageSwitch from './LanguageSwitch.tsx'
 import Logo from './Logo.tsx'
@@ -40,7 +40,7 @@ export default function Footer() {
             {groupDays(HOURS.cafe).map((group) => (
               <li key={group.days[0]}>
                 <span>{formatDays(group.days, t.daysShort)}</span>
-                {group.interval ? formatInterval(group.interval) : t.hours.closed}
+                {group.interval ? formatOpenUntil(group.interval, t.hours.late) : t.hours.closed}
               </li>
             ))}
             {groupDays(HOURS.delivery)

@@ -21,7 +21,7 @@
 
 .hours__grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(1.75rem, 3.5vw, 3rem);
 }
@@ -79,6 +79,10 @@
   stroke: var(--lagoon);
   stroke-width: 16;
   filter: drop-shadow(0 0 10px rgb(39 163 207 / 0.45));
+}
+
+.dial__fade-stop {
+  stop-color: var(--lagoon);
 }
 
 .dial__arc--delivery {
@@ -176,7 +180,7 @@
 
 .hours-table th,
 .hours-table td {
-  padding: 0.82rem 0.7rem;
+  padding: 0.82rem 0.6rem;
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
   text-align: left;
   vertical-align: middle;
@@ -200,6 +204,14 @@
   white-space: nowrap;
 }
 
+.hours-table td.hours-table__cafe {
+  white-space: normal;
+}
+
+.hours-table__cafe span {
+  white-space: nowrap;
+}
+
 .hours-table tr.is-today > * {
   background: rgb(39 163 207 / 0.14);
   color: #fff;
@@ -209,9 +221,11 @@
   box-shadow: inset 3px 0 0 var(--gold);
 }
 
+/* Under the day name, so the day column stays narrow and the café hours keep to one line. */
 .hours-table__today {
-  display: inline-block;
-  margin-left: 0.55rem;
+  display: block;
+  width: fit-content;
+  margin-top: 0.3rem;
   padding: 0.12rem 0.5rem;
   border-radius: 999px;
   background: var(--gold);

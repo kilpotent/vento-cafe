@@ -24,6 +24,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
+  white-space: nowrap;
 }
 
 .dayline__end svg {
